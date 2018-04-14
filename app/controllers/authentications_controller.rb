@@ -1,13 +1,14 @@
 class AuthenticationsController < ApplicationController
   def create
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
+    if user = User.find_by(email: auth['info']['email'])
+      session[:user_id] = user.id
+    else
+      user = User.create(email: auth['info']['email'], name: auth['info']['name'], password: SecureRandom.hex)
     end
 
-    session[:user_id] = @user.id
+    session[:user_id] = user.id
 
-    render 'welcome/home'
+    redirect_to root_path
   end
 
   private

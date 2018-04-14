@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1 class="display-3">Welcome<%= ', ' + current_user.name if current_user.id %>! </h1>
+  <h1 class="display-3">Welcome<%#= ', ' + current_user.name if current_user.id %>! </h1>
   <p class="lead">This is a simple web application for creating road trips in the continental US.</p>
   <hr class="my-4">
   <p>It is also a portfolio project for the rails section of the Flatiron School's Web Development Program.</p><br>
@@ -7,7 +7,7 @@
     <p class="lead">
       <%= link_to "Sign Up", registration_path, {class: "btn btn-primary btn-lg"} %> |
       <%= link_to "Sign In", signin_path, {class: "btn btn-primary btn-lg"} %> |
-      <%= link_to "Sign In with Github", "auth/github", {class: "btn btn-primary btn-lg"} %>
+      <%= link_to "Sign In with Github", "/auth/github", {class: "btn btn-primary btn-lg"} %>
     </p>
   <% end %>
 </div>
