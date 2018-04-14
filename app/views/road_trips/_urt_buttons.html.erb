@@ -1,0 +1,7 @@
+<% if !in_process?(road_trip) && !completed?(road_trip) %>
+  <%= render partial: "user_road_trips/in_process", locals: {user_road_trip: road_trip.user_road_trips.build} %>
+<% end %>
+<br>
+<% if !completed?(road_trip) %>
+  <%= render partial: "user_road_trips/completed", locals: {user_road_trip: road_trip.user_road_trips.build} %>
+<% end %>
