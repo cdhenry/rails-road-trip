@@ -1,17 +1,21 @@
-<%= form_for current_user, url: signin_path, method: :post do |f| %>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign In" %>
-  </div>
-<% end %>
+<br /><center><div class="jumbotron" style="height:50%; width:50%;">
+  <%= form_for current_user, url: signin_path, method: :post do |f| %>
+    <fieldset>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, { class:"form-control" } %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, { class:"form-control" } %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Sign In" %>
+      </div>
+    </fieldset>
+  <% end %>
 
-<div>
-  <%= link_to "Sign in with Github" , "auth/github" %>
-</div>
+  <div>
+    <%= link_to "Sign in with Github" , "auth/github" %>
+  </div>
+</div></center>

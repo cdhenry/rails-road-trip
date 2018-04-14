@@ -1,13 +1,13 @@
 <div class="jumbotron">
-  <h1 class="display-3">Welcome<%=', '+current_user.name if current_user %>! </h1>
+  <h1 class="display-3">Welcome<%= ', ' + current_user.name if current_user.id %>! </h1>
   <p class="lead">This is a simple web application for creating road trips in the continental US.</p>
   <hr class="my-4">
   <p>It is also a portfolio project for the rails section of the Flatiron School's Web Development Program.</p><br>
-  <% if !current_user %>
+  <% if !current_user.id %>
     <p class="lead">
-      <%= link_to "Sign Up", new_user_registration_path, {class: "btn btn-primary btn-lg"} %> |
-      <%= link_to "Log In", new_user_session_path, {class: "btn btn-primary btn-lg"} %> |
-      <%= link_to "Log In with Github", user_github_omniauth_authorize_path, {class: "btn btn-primary btn-lg"} %>
+      <%= link_to "Sign Up", registration_path, {class: "btn btn-primary btn-lg"} %> |
+      <%= link_to "Sign In", signin_path, {class: "btn btn-primary btn-lg"} %> |
+      <%= link_to "Sign In with Github", "auth/github", {class: "btn btn-primary btn-lg"} %>
     </p>
   <% end %>
 </div>

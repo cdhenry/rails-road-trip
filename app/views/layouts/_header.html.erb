@@ -2,7 +2,7 @@
   <%= link_to "Road Trip", root_url, {class: "navbar-brand"} %>
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
-      <% if current_user %>
+      <% if current_user.id %>
         <li>
           <%= link_to "Road Warriors", users_path, {class: "nav-link"} %>
         </li>
@@ -21,13 +21,13 @@
             <%= link_to "Select a Road Trip", road_trips_path, { class: "dropdown-item" } if current_user.current_trip.nil? %>
             <%= link_to "Current Trip", road_trip_path(current_user.current_trip), { class: "dropdown-item" } if current_user.current_trip %>
             <%= link_to "Profile", user_path(current_user), { class: "dropdown-item" } %>
-            <%= link_to "Account", edit_user_registration_path(current_user), { class: "dropdown-item" } %>
+            <%= link_to "Account", edit_registration_path(current_user), { class: "dropdown-item" } %>
             <div class="dropdown-divider"></div>
-            <%= link_to "Log Out", destroy_user_session_url, { method: :delete, class: "dropdown-item" } %>
+            <%= link_to "Log Out", logout_path, { method: :delete, class: "dropdown-item" } %>
           </div>
         </li>
       <% end %>
-      <%= render partial: 'layouts/signin' %>
+      <%#= render partial: 'layouts/signin' %>
     </ul>
   </div>
-</div>
+</nav>
