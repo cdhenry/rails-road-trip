@@ -16,8 +16,8 @@
           <%= link_to "Tags", tags_path, {class: "nav-link"} %>
         </li>
         <li class="nav-item dropdown show">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><%=current_user.username%></a>
-          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">      <%= link_to "Garage", cars_path, {class: "dropdown-item"}  if current_user.current_car%>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><%=current_user.name%></a>
+          <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
             <%= link_to "Select a Road Trip", road_trips_path, { class: "dropdown-item" } if current_user.current_trip.nil? %>
             <%= link_to "Current Trip", road_trip_path(current_user.current_trip), { class: "dropdown-item" } if current_user.current_trip %>
             <%= link_to "Profile", user_path(current_user), { class: "dropdown-item" } %>
