@@ -1,0 +1,24 @@
+<h1>Tags</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Tag</th>
+      <th scope="col">Times Used</th>
+      <th scope="col">Last Destination Tagged</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr class="table-active">
+        <td><%= link_to tag.title, tag_path(tag) %></td>
+        <td><%= tag.times_used %></td>
+        <td><%= link_to tag.last_destination.name, destination_path(tag.last_destination) if tag.last_destination %></td>
+        <% if current_user.admin %>
+          <td><%= link_to 'Show', tag %></td>
+          <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+          <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
