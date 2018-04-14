@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   root to: "welcome#home"
+
   get '/auth/github/callback' => 'authentications#create'
+
+  get '/registrations/new' => 'registrations#new'
+  get '/registrations/:id/edit' => 'registrations#edit'
+  put '/registrations/:id/' => 'registrations#update'
+
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
