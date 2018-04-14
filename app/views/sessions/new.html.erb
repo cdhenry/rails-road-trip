@@ -1,5 +1,9 @@
 <%= form_for current_user, url: signin_path, method: :post do |f| %>
   <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
@@ -9,5 +13,8 @@
   </div>
   <div class="actions">
     <%= f.submit "Sign In" %>
+  </div>
+  <div>
+    <%= link_to "Sign in with Github" , "auth/github" %>
   </div>
 <% end %>

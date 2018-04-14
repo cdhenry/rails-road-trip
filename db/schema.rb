@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414104117) do
+ActiveRecord::Schema.define(version: 20180414132847) do
 
   create_table "destination_road_trips", force: :cascade do |t|
     t.integer  "road_trip_id"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20180414104117) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
+    t.string   "name"
     t.string   "email"
     t.string   "password_digest"
     t.integer  "miles_driven",    default: 0
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20180414104117) do
     t.boolean  "admin",           default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
 end
