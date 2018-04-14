@@ -35,6 +35,7 @@ end
   UserRoadTrip.create(
     user_id: rand(1..10),
     road_trip_id: rand(1..10),
+    completed: true
   )
   DestinationTag.create(
     destination_id: rand(1..10),

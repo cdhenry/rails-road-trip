@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def self.road_warriors
     all.order(miles_driven: :desc).limit(10)
   end
+
+  def trips_created
+    RoadTrip.where(author_id: self.id)
+  end
 end
