@@ -28,7 +28,7 @@
     password: "password",
     miles_driven: rand(100..200000),
     current_trip_id: rand(1..10)
-
+  )
 end
 
 20.times do
