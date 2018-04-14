@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20180414104117) do
     t.string   "password_digest"
     t.integer  "miles_driven",    default: 0
     t.integer  "current_trip_id"
-    t.integer  "current_car_id"
     t.boolean  "admin",           default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false

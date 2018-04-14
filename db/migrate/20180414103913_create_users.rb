@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_digest
       t.integer :miles_driven, default: 0
       t.integer :current_trip_id
-      t.integer :current_car_id
       t.boolean :admin, default: false
 
       t.timestamps null: false
