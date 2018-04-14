@@ -28,14 +28,14 @@
     password: "password",
     miles_driven: rand(100..200000),
     current_trip_id: rand(1..10)
-  )
+
 end
 
 20.times do
   UserRoadTrip.create(
     user_id: rand(1..10),
     road_trip_id: rand(1..10),
-    completed: true
+    status: ["In Process", "Completed", nil].sample
   )
   DestinationTag.create(
     destination_id: rand(1..10),

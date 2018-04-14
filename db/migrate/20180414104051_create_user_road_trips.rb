@@ -3,7 +3,7 @@ class CreateUserRoadTrips < ActiveRecord::Migration
     create_table :user_road_trips do |t|
       t.belongs_to :user
       t.belongs_to :road_trip
-      t.boolean :completed, default: false
+      t.string :status
 
       t.timestamps null: false
     end
