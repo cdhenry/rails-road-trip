@@ -35,7 +35,7 @@ end
   UserRoadTrip.create(
     user_id: rand(1..10),
     road_trip_id: rand(1..10),
-    status: ["In Process", "Completed", nil].sample
+    status: ["In Process", "Completed"].sample
   )
   DestinationTag.create(
     destination_id: rand(1..10),
