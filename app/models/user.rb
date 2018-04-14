@@ -3,4 +3,6 @@ class User < ActiveRecord::Base
 
   has_many :user_road_trips
   has_many :road_trips, through: :user_road_trips
+
+  has_secure_password
 end
