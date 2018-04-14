@@ -1,0 +1,23 @@
+<div class="card mb-3">
+  <h3 class="card-header"><%= @tag.title %></h3>
+  <div class="card-body">
+    <h5 class="card-title">Destinations that have this tag:</h5>
+  </div>
+  <table class="table table-hover">
+    <tbody>
+      <% @tag.destinations.each do |destination| %>
+        <tr class="table-active">
+          <th scope="row"><%= link_to destination.name, destination_path(destination) %></th>
+          <td><%= destination.city_and_state %></td>
+          <td><%= destination.street_address %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="card-footer text-muted">
+    <% if current_user.admin %>
+      <%= link_to 'Edit', edit_tag_path(@tag) %> |
+    <% end %>
+    <%= link_to 'Back', tags_path %>
+  </div>
+</div>

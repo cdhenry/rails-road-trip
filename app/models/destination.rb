@@ -14,4 +14,7 @@ class Destination < ActiveRecord::Base
 
   accepts_nested_attributes_for :tags
 
+  def city_and_state
+    "#{self.city}, #{self.state}"
+  end
 end
