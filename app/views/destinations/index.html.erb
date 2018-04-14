@@ -1,0 +1,31 @@
+<h1>Destinations <%= link_to 'Create New Destination', new_destination_path, {class: "btn btn-primary"} %> </h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">City, State</th>
+      <th scope="col">Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @destinations.each do |destination| %>
+      <tr class="table-active">
+        <th scope="row"><%= link_to destination.name, destination_path(destination) %></th>
+        <td><%= destination.description %></td>
+        <td><%= destination.city_and_state %></td>
+        <td>
+          <% destination.tags.each do |tag| %>
+            <%= link_to tag.title, tag_path(tag) %>,
+          <% end %>
+        </td>
+        <% if current_user.admin %>
+          <td><%= link_to 'Show', destination %></td>
+          <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
+          <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
