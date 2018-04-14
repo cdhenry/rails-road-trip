@@ -1,0 +1,44 @@
+<h1>Road Trips <%= link_to 'Create New Road Trip', new_road_trip_path, {class: "btn btn-primary"} %> </h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Completed</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Miles</th>
+      <th scope="col">Destinations</th>
+      <% if current_user.admin %>
+        <th scope="col" colspan="3"><center>Edit User Trips</center></th>
+      <% elsif !current_user.road_trips.empty? %>
+        <th scope="col" colspan="3"><center>Edit Your Trips</center></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @road_trips.each do |road_trip| %>
+      <tr class="table-active">
+        <td><% if current_user.road_trips.include?(road_trip) %>
+          <span class='badge badge-pill badge-primary'>X</span>
+          <% elsif current_user.current_trip == road_trip %>
+          <span class='badge badge-pill badge-primary'>In Process</span>
+          <% end %>
+        </td>
+        <td><%= link_to road_trip.title, road_trip_path(road_trip) %></td>
+        <td><%= road_trip.description %></td>
+        <td><%= road_trip.total_miles %></td>
+        <td><center><%= road_trip.destinations.count %></center></td>
+        <% if current_user.admin || road_trip.author_id == current_user.id %>
+          <td><%= link_to 'Show', road_trip %></td>
+          <td><%= link_to 'Edit', edit_road_trip_path(road_trip) %></td>
+          <td><%= link_to 'Destroy', road_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <% if !current_user.road_trips.empty? %>
+            <td colspan="3"></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
