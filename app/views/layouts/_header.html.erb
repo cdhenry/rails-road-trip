@@ -1,22 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <%= link_to "Road Trip", root_url, {class: "navbar-brand"} %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <% if current_user.id %>
-        <li>
+        <li class="nav-item active">
           <%= link_to "Road Warriors", users_path, {class: "nav-link"} %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "Trips", road_trips_path, {class: "nav-link"} %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "Destinations", destinations_path, {class: "nav-link"} %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "Tags", tags_path, {class: "nav-link"} %>
         </li>
         <li class="nav-item dropdown show">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><%=current_user.name%></a>
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%=current_user.name%></a>
           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
             <%= link_to "Select a Road Trip", road_trips_path, { class: "dropdown-item" } if current_user.current_trip.nil? %>
             <%= link_to "Current Trip", road_trip_path(current_user.current_trip), { class: "dropdown-item" } if current_user.current_trip %>
@@ -27,7 +31,6 @@
           </div>
         </li>
       <% end %>
-      <%#= render partial: 'layouts/signin' %>
     </ul>
   </div>
 </nav>
