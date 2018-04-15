@@ -18,11 +18,24 @@ class RoadTrip < ActiveRecord::Base
     User.find(self.author_id)
   end
 
+  def set_tags(tags, destination)
+    tags.each_value do |title|
+      if title != ""
+        destination.tags.build(title: title)
+      end
+    end
+  end
+
   def destinations_attributes=(destination_attributes)
     destination_attributes.values.each do |destination_attribute|
       stop_order = destination_attribute["stop_order"]
       destination_attribute.delete("stop_order")
+      tags = destination_attribute["tags_attributes"].first[1]
+      destination_attribute.delete("tags_attributes")
+
       destination = Destination.find_or_initialize_by(destination_attribute)
+      set_tags(tags, destination)
+
       if destination.save
         self.destination_road_trips.create(destination_id: destination.id, destination_order: stop_order)
       end
