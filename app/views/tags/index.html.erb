@@ -5,6 +5,9 @@
       <th scope="col">Tag</th>
       <th scope="col">Times Used</th>
       <th scope="col">Last Destination Tagged</th>
+      <% if current_user.admin %>
+        <th colspan=3>Controls</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -14,9 +17,7 @@
         <td><%= tag.times_used %></td>
         <td><%= link_to tag.last_destination.name, destination_path(tag.last_destination) if tag.last_destination %></td>
         <% if current_user.admin %>
-          <td><%= link_to 'Show', tag %></td>
-          <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-          <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= render partial: "users/admin/controls", locals: {model: tag} %>
         <% end %>
       </tr>
     <% end %>

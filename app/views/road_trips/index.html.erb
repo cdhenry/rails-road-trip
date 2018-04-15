@@ -8,10 +8,8 @@
       <th scope="col">Description</th>
       <th scope="col">Miles</th>
       <th scope="col">Destinations</th>
-      <% if current_user.admin %>
+      <% if current_user.admin || !current_user.road_trips.empty? %>
         <th scope="col" colspan="3"><center>Edit User Trips</center></th>
-      <% elsif !current_user.road_trips.empty? %>
-        <th scope="col" colspan="3"><center>Edit Your Trips</center></th>
       <% end %>
     </tr>
   </thead>

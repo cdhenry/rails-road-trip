@@ -1,5 +1,5 @@
 module UsersHelper
-  def admin_controls(model)
-    model.class.name.split(/(?=[A-Z])/).join('_').downcase
+  def edit_path(model)
+    "edit_" + model.class.name.split(/(?=[A-Z])/).join('_').downcase + "_path"
   end
 end
