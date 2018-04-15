@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def self.road_warriors
-    all.order(miles_driven: :desc).limit(10)
+    all.order(miles_driven: :desc)
   end
 
   def trips_created
