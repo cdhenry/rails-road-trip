@@ -1,0 +1,6 @@
+<% if in_process?(road_trip) %>
+  <span class="badge badge-pill badge-warning">In Process</span>
+<% end %>
+<% if completed?(road_trip) %>
+  <span class="badge badge-pill badge-success">Completed</span>
+<% end %>
