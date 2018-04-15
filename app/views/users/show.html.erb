@@ -12,9 +12,7 @@
     <% @user.user_road_trips.each do |user_road_trip| %>
       <li class="list-group-item"><%= link_to user_road_trip.road_trip.title, road_trip_path(user_road_trip.road_trip) %>
         <span class="badge badge-pill badge-primary" style="float:right">
-          <%binding.pry%>
           <%= user_road_trip.status if user_road_trip.status %>
-          <%#= 'In Progress' if user_road_trip.road_trip = current_user.current_trip %>
         </span>
       </li>
     <% end %>

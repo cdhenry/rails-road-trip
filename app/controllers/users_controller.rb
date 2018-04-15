@@ -47,6 +47,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :current_trip_id, user_road_trips: [:completed])
+      params.require(:user).permit(:name, :email, :password, :current_trip_id, user_road_trips_attributes: [:completed, :road_trip_id])
     end
 end

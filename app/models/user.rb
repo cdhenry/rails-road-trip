@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :user_road_trips
   has_many :road_trips, through: :user_road_trips
 
+  accepts_nested_attributes_for :user_road_trips
+
   has_secure_password
 
   def self.road_warriors
@@ -12,5 +14,13 @@ class User < ActiveRecord::Base
 
   def trips_created
     RoadTrip.where(author_id: self.id)
+  end
+
+  def user_road_trips_attributes=(user_road_trip_attributes)
+    user_road_trip_attributes.values.each do |user_road_trip_attribute|
+      user_road_trip = UserRoadTrip.find_or_initialize_by(road_trip_id: user_road_trip_attribute["road_trip_id"], user_id: self.id)
+      user_road_trip.completed = user_road_trip_attribute["completed"]
+      user_road_trip.save
+    end
   end
 end
