@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <% if !current_user.admin && !user.admin %>
+      <% if (!current_user.admin && !user.admin) || current_user.admin %>
         <tr class="table-active">
           <th scope="row"><%= link_to user.name, user_path(user) %></td>
           <td><%= user.miles_driven %></td>
