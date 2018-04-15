@@ -3,7 +3,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Completed</th>
+      <th scope="col">Status</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Miles</th>
@@ -18,10 +18,9 @@
   <tbody>
     <% @road_trips.each do |road_trip| %>
       <tr class="table-active">
-        <td><% if current_user.road_trips.include?(road_trip) %>
-          <span class='badge badge-pill badge-primary'>X</span>
-          <% elsif current_user.current_trip == road_trip %>
-          <span class='badge badge-pill badge-primary'>In Process</span>
+        <td>
+          <% if current_user.road_trips.include?(road_trip) %>
+            <%= render partial: "users/badges", locals: {road_trip: road_trip} %>
           <% end %>
         </td>
         <td><%= link_to road_trip.title, road_trip_path(road_trip) %></td>
