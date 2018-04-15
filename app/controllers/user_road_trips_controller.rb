@@ -1,7 +1,11 @@
 class UserRoadTripsController < ApplicationController
+  before_action :set_user, only: [:create]
+
   def create
     if trip_status == "Reset"
       find_trip.destroy if find_trip
+      @user.current_trip_id = nil
+      @user.save
       redirect_to road_trip_path(trip_id)
     elsif trip_status == "In Process" && current_user.current_trip_id
       flash[:error] = "You cannot be on two trips at once"
@@ -14,7 +18,8 @@ class UserRoadTripsController < ApplicationController
     else
       trip = UserRoadTrip.new(user_road_trip_params)
       trip.save
-      current_user.current_trip_id = trip_id
+      @user.current_trip_id = trip_id
+      @user.save
       redirect_to road_trip_path(trip_id)
     end
   end
@@ -40,5 +45,9 @@ class UserRoadTripsController < ApplicationController
       if current_user.current_trip_id == trip_id && trip_status == "Completed"
         current_user.current_trip_id = nil
       end
+    end
+
+    def set_user
+      @user = User.find(params[:user_road_trip][:user_id])
     end
 end
