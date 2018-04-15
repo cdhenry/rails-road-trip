@@ -1,0 +1,16 @@
+<%= f.label :stop_order %>
+<%= f.number_field :stop_order %><br>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.label :description %>
+<%= f.text_area :description, size: "75x5" %>
+<%= f.label :city %>
+<%= f.text_field :city %> ,
+<%= f.label :state %>
+<%= f.text_field :state %><br>
+<%= f.label :street_address %>
+<%= f.text_field :street_address %><br><br>
+<h6 class="card-subtitle text-muted">Add a descriptive tag or two to this destination, so people know what this place is like.</h6><br>
+<%= f.fields_for :tags, f.object.tags.build do |tags_fields| %>
+  <%= render 'tag_fields', f: tags_fields %>
+<% end %>

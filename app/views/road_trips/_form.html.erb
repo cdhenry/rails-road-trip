@@ -33,27 +33,7 @@
     <div class="card-body">
       <h3 class="card-header">Create A New Destination</h3><br>
       <%= f.fields_for :destinations, @road_trip.destinations.build do |destinations_fields| %>
-        <%= destinations_fields.label :stop_order %>
-        <%= destinations_fields.number_field :stop_order %><br>
-        <%= destinations_fields.label :name %>
-        <%= destinations_fields.text_field :name %><br>
-        <%= destinations_fields.label :description %>
-        <%= destinations_fields.text_area :description, size: "75x5" %>
-        <%= destinations_fields.label :city %>
-        <%= destinations_fields.text_field :city %> ,
-        <%= destinations_fields.label :state %>
-        <%= destinations_fields.text_field :state %><br>
-        <%= destinations_fields.label :street_address %>
-        <%= destinations_fields.text_field :street_address %><br><br>
-        <h6 class="card-subtitle text-muted">Add a descriptive tag or two to this destination, so people know what this place is like.</h6><br>
-        <%= destinations_fields.fields_for :tags, destinations_fields.object.tags.build do |tags_fields| %>
-          <%= tags_fields.label :tag_1 %>
-          <%= tags_fields.text_field :title %><br>
-          <%= tags_fields.label :tag_2 %>
-          <%= tags_fields.text_field :title %><br>
-          <%= tags_fields.label :tag_3 %>
-          <%= tags_fields.text_field :title %>
-        <% end %>
+        <%= render 'destination_fields', f: destinations_fields %>
       <% end %>
     </div>
   <br>
