@@ -14,4 +14,7 @@ class RoadTrip < ActiveRecord::Base
   accepts_nested_attributes_for :destination_road_trips
   accepts_nested_attributes_for :tags
 
+  def author
+    User.find(self.author_id)
+  end
 end
