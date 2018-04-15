@@ -24,7 +24,6 @@ class RoadTrip < ActiveRecord::Base
       destination_attribute.delete("stop_order")
       destination = Destination.find_or_initialize_by(destination_attribute)
       if destination.save
-        binding.pry
         self.destination_road_trips.create(destination_id: destination.id, destination_order: stop_order)
       end
     end

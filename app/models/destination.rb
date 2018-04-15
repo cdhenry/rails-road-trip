@@ -1,4 +1,6 @@
 class Destination < ActiveRecord::Base
+  attr_accessor :stop_order
+
   validates :name, presence: true
   validates :description, presence: true
   validates :city, presence: true
