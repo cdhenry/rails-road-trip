@@ -17,4 +17,11 @@ class Destination < ActiveRecord::Base
   def city_and_state
     "#{self.city}, #{self.state}"
   end
+
+  def on_this_trip?(road_trip)
+    drt = DestinationRoadTrip.where(road_trip_id: road_trip.id).where(destination_id: self.id)
+    if !drt.empty?
+      drt.first.destination_order
+    end
+  end
 end

@@ -17,4 +17,25 @@ class RoadTrip < ActiveRecord::Base
   def author
     User.find(self.author_id)
   end
+
+  def destinations_attributes=(destination_attributes)
+    destination_attributes.values.each do |destination_attribute|
+      stop_order = destination_attribute["stop_order"]
+      destination_attribute.delete("stop_order")
+      destination = Destination.find_or_initialize_by(destination_attribute)
+      if destination.save
+        binding.pry
+        self.destination_road_trips.create(destination_id: destination.id, destination_order: stop_order)
+      end
+    end
+  end
+
+  def destination_road_trips_attributes=(destination_road_trips_attributes)
+    destination_road_trips_attributes.values.each do |destination_road_trip_attribute|
+      if drt = self.destination_road_trips.find_by(destination_id: destination_road_trip_attribute["destination_id"])
+        drt.destination_order = destination_road_trip_attribute["destination_order"]
+        drt.save
+      end
+    end
+  end
 end
