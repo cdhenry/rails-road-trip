@@ -1,21 +1,44 @@
 class UserRoadTripsController < ApplicationController
   def create
-    if trip = UserRoadTrip.find_by(road_trip_id: params[:user_road_trip][:road_trip_id], user_id: params[:user_road_trip][:user_id])
-      trip.status = params[:user_road_trip][:status]
+    if trip_status == "Reset"
+      find_trip.destroy if find_trip
+      redirect_to road_trip_path(trip_id)
+    elsif trip_status == "In Process" && current_user.current_trip_id
+      flash[:error] = "You cannot be on two trips at once"
+      redirect_to road_trip_path(trip_id)
+    elsif trip = find_trip
+      trip.status = trip_status
+      mark_completed
       trip.save
-      redirect_to road_trip_path(params[:user_road_trip][:road_trip_id])
+      redirect_to road_trip_path(trip_id)
     else
       trip = UserRoadTrip.new(user_road_trip_params)
-      if trip.save
-        redirect_to road_trip_path(params[:user_road_trip][:road_trip_id])
-      else
-        redirect_to road_trip_path(params[:user_road_trip][:road_trip_id])
-      end
+      trip.save
+      current_user.current_trip_id = trip_id
+      redirect_to road_trip_path(trip_id)
     end
   end
 
   private
     def user_road_trip_params
       params.require(:user_road_trip).permit(:status, :user_id, :road_trip_id)
+    end
+
+    def trip_id
+      params[:user_road_trip][:road_trip_id]
+    end
+
+    def trip_status
+      params[:user_road_trip][:status]
+    end
+
+    def find_trip
+      UserRoadTrip.find_by(road_trip_id: params[:user_road_trip][:road_trip_id], user_id: params[:user_road_trip][:user_id])
+    end
+
+    def mark_completed
+      if current_user.current_trip_id == trip_id && trip_status == "Completed"
+        current_user.current_trip_id = nil
+      end
     end
 end

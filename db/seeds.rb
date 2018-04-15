@@ -26,8 +26,7 @@
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: "password",
-    miles_driven: rand(100..200000),
-    current_trip_id: rand(1..10)
+    miles_driven: rand(100..200000)
   )
 end
 

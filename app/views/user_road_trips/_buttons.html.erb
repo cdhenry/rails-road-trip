@@ -5,3 +5,5 @@
 <% if !completed?(road_trip) %>
   <%= render partial: "user_road_trips/completed", locals: {user_road_trip: road_trip.user_road_trips.build} %>
 <% end %>
+<br>
+<%= render partial: "user_road_trips/reset", locals: {user_road_trip: road_trip.user_road_trips.build} %>

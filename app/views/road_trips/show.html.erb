@@ -1,3 +1,4 @@
+<%= render partial: "layouts/errors", locals: {error: flash[:error]} %>
 <div class="card mb-3">
   <h3 class="card-header"><%= @road_trip.title %></h3>
   <div class="card-body">
@@ -10,6 +11,7 @@
       <%= render partial: "users/badges", locals: {road_trip: @road_trip} %>
       <br>
       <%= render partial: "user_road_trips/buttons", locals: {road_trip: @road_trip} %>
+      <br>
     </div>
   </div>
   <div class="container" role="main">
