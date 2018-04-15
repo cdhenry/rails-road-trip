@@ -47,3 +47,10 @@ end
     destination_order: rand(1..10)
   )
 end
+
+User.create(
+  name: "admin",
+  email: "admin@admin.com",
+  password: "password",
+  admin: true
+)
