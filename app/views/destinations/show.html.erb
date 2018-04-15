@@ -25,7 +25,9 @@
   </div>
   <div class="card-footer text-muted">
     Created At: <%= @destination.created_at %> |
+    <% if current_user.admin %>
       <%= link_to 'Edit', edit_destination_path(@destination) %> |
+    <% end %>
       <%= link_to 'All Destinations', destinations_path %>
   </div>
 </div>
