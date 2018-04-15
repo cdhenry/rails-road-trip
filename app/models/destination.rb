@@ -1,5 +1,5 @@
 class Destination < ActiveRecord::Base
-  attr_accessor :stop_order
+  attr_accessor :stop_order, :tags_attributes
 
   validates :name, presence: true
   validates :description, presence: true
@@ -25,5 +25,9 @@ class Destination < ActiveRecord::Base
     if !drt.empty?
       drt.first.destination_order
     end
+  end
+
+  def tags_attributes=(tags_attributes)
+    binding.pry
   end
 end

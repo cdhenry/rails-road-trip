@@ -1,4 +1,6 @@
 class Tag < ActiveRecord::Base
+  attr_accessor :tag_1, :tag_2, :tag_3
+
   validates :title, presence: true
 
   has_many :destination_tags
