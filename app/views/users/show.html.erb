@@ -10,6 +10,9 @@
       <p class="card-text">Trips Taken:</p>
     </div>
     <ul class="list-group list-group-flush">
+      <% if @user.user_road_trips.empty? %>
+        <li class="list-group-item">No Trips Taken</center></li>
+      <% end %>
       <% @user.user_road_trips.each do |user_road_trip| %>
         <li class="list-group-item"><%= link_to user_road_trip.road_trip.title, road_trip_path(user_road_trip.road_trip) %>
           <div style="float:right;"><%= render partial: "users/badges", locals: {road_trip: user_road_trip.road_trip}, style:"float:right;" %></div>
@@ -21,7 +24,7 @@
     </div>
     <ul class="list-group list-group-flush">
       <% if @user.trips_created.empty? %>
-        <li class="list-group-item"><center><%= link_to "Create Some Trips!", new_road_trip_path %></center></li>
+        <li class="list-group-item"><center>No Trips Created</center></li>
       <% end %>
       <% @user.trips_created.each do |trip| %>
         <li class="list-group-item"><%= link_to trip.title, road_trip_path(trip) %></li>

@@ -3,10 +3,6 @@ Rails.application.routes.draw do
 
   get '/auth/github/callback', to: 'authentications#create'
 
-  get '/registrations/new', to: 'registrations#new', as: 'registration'
-  get '/registrations/:id/edit', to: 'registrations#edit', as: 'edit_registration'
-  put '/registrations/:id/', to: 'registrations#update'
-
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
