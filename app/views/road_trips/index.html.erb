@@ -28,9 +28,7 @@
         <td><%= road_trip.total_miles %></td>
         <td><center><%= road_trip.destinations.count %></center></td>
         <% if current_user.admin || road_trip.author_id == current_user.id %>
-          <td><%= link_to 'Show', road_trip %></td>
-          <td><%= link_to 'Edit', edit_road_trip_path(road_trip) %></td>
-          <td><%= link_to 'Destroy', road_trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= render partial: "users/admin/controls", locals: {model: road_trip} %>
         <% else %>
           <% if !current_user.road_trips.empty? %>
             <td colspan="3"></td>
