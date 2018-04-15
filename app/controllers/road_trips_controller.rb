@@ -53,11 +53,12 @@ class RoadTripsController < ApplicationController
         :title, :description, :total_miles, :author_id,
         )
     end
-    #destination_ids:[],
+
     def destination_params
       params.require(:road_trip).permit(
-        destinations_attributes: [:name, :description, :city, :state, :street_address, :stop_order, tags: [:title]],
+        destinations_attributes: [:name, :description, :city, :state, :street_address, :stop_order,
+          tags_attributes: [:tag_1, :tag_2, :tag_3]],
         destination_road_trips_attributes: [:destination_id, :destination_order]
-      )
+      ) #you also capture destination_ids:[] for road_trip object but are not using it
     end
 end
