@@ -1,0 +1,6 @@
+<%= form_for user_road_trip do |f| %>
+  <%= f.hidden_field :status, value: 'Completed' %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :road_trip_id, value: @road_trip.id %>
+  <%= f.button "Mark Completed" %>
+<% end %>
