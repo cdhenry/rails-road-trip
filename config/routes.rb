@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
-    resources :road_trips, only: [:show, :index]
+    resources :road_trips, as: "created_trips", only: [:show, :index]
   end
   resources :road_trips do
     resources :destinations, only: [:show, :index]

@@ -3,8 +3,8 @@ class RoadTripsController < ApplicationController
   before_action :set_destinations, only: [:new, :edit, :update, :create]
 
   def index
-    if params[:author_id]
-      @road_trips = Author.find(params[:author_id]).road_trips
+    if params[:user_id]
+      @road_trips = User.find(params[:user_id]).road_trips
     else
       @road_trips = RoadTrip.all
     end

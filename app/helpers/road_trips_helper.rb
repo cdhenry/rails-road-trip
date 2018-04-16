@@ -14,4 +14,8 @@ module RoadTripsHelper
       end
     end
   end
+
+  def trip_author(road_trip)
+    User.find(road_trip.author_id)
+  end
 end
