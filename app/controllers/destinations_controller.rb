@@ -44,6 +44,6 @@ class DestinationsController < ApplicationController
     end
 
     def destination_params
-      params.require(:destination).permit(:name, :description, :city, :state, :street_address, tags_attributes: [:title])
+      params.require(:destination).permit(:name, :description, :city, :state, :street_address, tag_ids:[], tags_attributes: [:tag_1, :tag_2, :tag_3])
     end
 end
