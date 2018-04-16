@@ -3,27 +3,26 @@ class UserRoadTripsController < ApplicationController
 
   def create
     if trip_status == "Reset"
-      find_trip.destroy if find_trip
-      @user.current_trip_id = nil
-      binding.pry
-      if find_trip.status == "Completed"
-        @user.miles_driven = @user.miles_driven.to_i - find_trip.total_miles.to_i
+      if find_urt.status == "Completed"
+        @user.miles_driven = @user.miles_driven.to_i - RoadTrip.find(params[:user_road_trip][:road_trip_id]).total_miles.to_i
         @user.save
       end
+      find_urt.destroy if find_urt
+      @user.current_trip_id = nil
       redirect_to road_trip_path(trip_id)
     elsif trip_status == "In Process" && current_user.current_trip_id
       flash[:error] = "You cannot be on two trips at once"
       redirect_to road_trip_path(trip_id)
-    elsif trip = find_trip
-      trip.status = trip_status
+    elsif urt = find_urt
+      urt.status = trip_status
       mark_completed
-      trip.save
-      @user.miles_driven = @user.miles_driven.to_i + trip.total_miles.to_i
+      urt.save
+      @user.miles_driven = @user.miles_driven.to_i + RoadTrip.find(params[:user_road_trip][:road_trip_id]).total_miles.to_i
       @user.save
       redirect_to road_trip_path(trip_id)
     else
-      trip = UserRoadTrip.new(user_road_trip_params)
-      trip.save
+      urt = UserRoadTrip.new(user_road_trip_params)
+      urt.save
       @user.current_trip_id = trip_id
       @user.save
       redirect_to road_trip_path(trip_id)
@@ -43,7 +42,7 @@ class UserRoadTripsController < ApplicationController
       params[:user_road_trip][:status]
     end
 
-    def find_trip
+    def find_urt
       UserRoadTrip.find_by(road_trip_id: params[:user_road_trip][:road_trip_id], user_id: params[:user_road_trip][:user_id])
     end
 
