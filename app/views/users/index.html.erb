@@ -18,7 +18,7 @@
           <th scope="row"><%= link_to user.name, user_path(user) %></td>
           <td><%= user.miles_driven %></td>
           <td><%= link_to user.current_trip.title, road_trip_path(user.current_trip) if user.current_trip_id %></td>
-          <td><%= link_to "View", user_created_trips_path(user.id) %>
+          <td><%= link_to user.road_trips.count, user_created_trips_path(user)  if user.road_trips.count > 0 %></td>
           <% if current_user.admin %>
             <%= render partial: "users/admin/controls", locals: {model: user} %>
           <% end %>

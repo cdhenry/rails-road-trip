@@ -24,7 +24,7 @@
         <td><%= link_to road_trip.title, road_trip_path(road_trip) %></td>
         <td><%= road_trip.description %></td>
         <td><%= road_trip.total_miles %></td>
-        <td><center><%= road_trip.destinations.count %></center></td>
+        <td><center><%= link_to road_trip.destinations.count, road_trip_destinations_path(road_trip) %></center></td>
         <% if current_user.admin || road_trip.author_id == current_user.id %>
           <%= render partial: "users/admin/controls", locals: {model: road_trip} %>
         <% else %>
@@ -37,4 +37,3 @@
   </tbody>
 </table>
 <%= link_to "All Users", users_path %>
-<br>

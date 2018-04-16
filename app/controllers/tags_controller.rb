@@ -2,7 +2,11 @@ class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tags = Tag.popularity_ordered
+    if params[:destination_id]
+      @tags = Destination.find(params[:destination_id]).tags.popularity_ordered
+    else
+      @tags = Tag.popularity_ordered
+    end
   end
 
   def show

@@ -2,7 +2,11 @@ class DestinationsController < ApplicationController
   before_action :set_destination, only: [:show, :edit, :update, :destroy]
 
   def index
-    @destinations = Destination.all
+    if params[:road_trip_id]
+      @destinations = RoadTrip.find(params[:road_trip_id]).destinations
+    else
+      @destinations = Destination.all
+    end
   end
 
   def show

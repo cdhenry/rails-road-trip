@@ -3,7 +3,7 @@ class UserRoadTripsController < ApplicationController
 
   def create
     if trip_status == "Reset"
-      if find_urt.status == "Completed"
+      if find_urt && find_urt.status == "Completed"
         @user.miles_driven = @user.miles_driven.to_i - RoadTrip.find(params[:user_road_trip][:road_trip_id]).total_miles.to_i
         @user.save
       end
