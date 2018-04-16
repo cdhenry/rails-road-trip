@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def create
     if user = User.find_by(email: auth['info']['email'])
       session[:user_id] = user.id

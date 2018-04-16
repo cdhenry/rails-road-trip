@@ -1,4 +1,4 @@
-<h1>Road Trips <%= link_to 'Create New Road Trip', new_road_trip_path, {class: "btn btn-primary"} %> </h1>
+<h1><%= link_to "Road Trips", road_trips_path, style: "text-decoration:none;" %> <%= link_to 'Create New Road Trip', new_road_trip_path, {class: "btn btn-primary"} %> </h1>
 
 <table class="table table-hover">
   <thead>
@@ -36,5 +36,5 @@
     <% end %>
   </tbody>
 </table>
-
+<%= link_to "All Users", users_path %>
 <br>
