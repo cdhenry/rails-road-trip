@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   def index
     if params[:destination_id]
@@ -48,5 +49,12 @@ class TagsController < ApplicationController
 
     def tag_params
       params.require(:tag).permit(:title)
+    end
+
+    def authorize
+      if !current_user.admin
+        flash[:error] = "Only admin can edit tags at the moment."
+        redirect_to @tag
+      end
     end
 end

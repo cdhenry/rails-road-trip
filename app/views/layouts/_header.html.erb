@@ -19,8 +19,8 @@
         <li class="nav-item">
           <%= link_to "Tags", tags_path, {class: "nav-link"} %>
         </li>
-        <li class="nav-item dropdown show">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><%= current_user.name %></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %></a>
           <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 44px, 0px); top: 0px; left: 0px; will-change: transform;">
             <%= link_to "Select a Road Trip", road_trips_path, { class: "dropdown-item" } if current_user.current_trip.nil? %>
             <%= link_to "Current Trip", road_trip_path(current_user.current_trip), { class: "dropdown-item" } if current_user.current_trip %>

@@ -1,6 +1,7 @@
 class RoadTripsController < ApplicationController
   before_action :set_road_trip, only: [:show, :edit, :update, :destroy]
   before_action :set_destinations, only: [:new, :edit, :update, :create]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   def index
     if params[:user_id]
@@ -18,6 +19,7 @@ class RoadTripsController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -64,5 +66,12 @@ class RoadTripsController < ApplicationController
           tags_attributes: [:tag_1, :tag_2, :tag_3]],
         destination_road_trips_attributes: [:destination_id, :destination_order]
       ) #you also capture destination_ids:[] for road_trip object but are not using it
+    end
+
+    def authorize
+      if current_user.id != @road_trip.author_id && !current_user.admin
+        flash[:error] = "You can only edit trips you have created."
+        redirect_to @road_trip
+      end
     end
 end

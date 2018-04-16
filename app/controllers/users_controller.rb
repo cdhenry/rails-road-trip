@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   def index
     if current_user.admin
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -49,5 +51,12 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :current_trip_id, user_road_trips_attributes: [:completed, :road_trip_id])
+    end
+
+    def authorize
+      if current_user.id != params[:id].to_i && !current_user.admin
+        flash[:error] = "You can only edit your own account."
+        redirect_to @user
+      end
     end
 end

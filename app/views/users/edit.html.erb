@@ -1,3 +1,5 @@
 <center><h1>Edit Your Account</h1></center>
 
   <%= render 'form' %>
+<br>
+<center><%= button_to 'Delete Account', @user, class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } if current_user.admin || current_user == @user  %></center>

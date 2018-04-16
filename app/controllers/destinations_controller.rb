@@ -1,5 +1,6 @@
 class DestinationsController < ApplicationController
   before_action :set_destination, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only:[:edit, :update, :destroy]
 
   def index
     if params[:road_trip_id]
@@ -17,6 +18,10 @@ class DestinationsController < ApplicationController
   end
 
   def edit
+    if !current_user.admin
+      flash[:error] = "Only admin can edit destinations at the moment."
+      redirect_to @destination
+    end
   end
 
   def create
@@ -49,5 +54,12 @@ class DestinationsController < ApplicationController
 
     def destination_params
       params.require(:destination).permit(:name, :description, :city, :state, :street_address, tag_ids:[], tags_attributes: [:tag_1, :tag_2, :tag_3])
+    end
+
+    def authorize
+      if !current_user.admin
+        flash[:error] = "Only admin can edit tags at the moment."
+        redirect_to @destination
+      end
     end
 end
