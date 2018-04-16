@@ -27,7 +27,13 @@ class Destination < ActiveRecord::Base
     end
   end
 
-  def tags_attributes=(tags_attributes)
-    binding.pry
+  def tags_attributes=(tag_attributes)
+    tag_attributes.values.each do |tag_attribute|
+      tag_attribute.each_value do |title|
+        if title != ""
+          self.tags.build(title: title)
+        end
+      end
+    end
   end
 end
