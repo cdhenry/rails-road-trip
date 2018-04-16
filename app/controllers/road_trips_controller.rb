@@ -3,7 +3,11 @@ class RoadTripsController < ApplicationController
   before_action :set_destinations, only: [:new, :edit, :update, :create]
 
   def index
-    @road_trips = RoadTrip.all
+    if params[:author_id]
+      @road_trips = Author.find(params[:author_id]).road_trips
+    else
+      @road_trips = RoadTrip.all
+    end
   end
 
   def show

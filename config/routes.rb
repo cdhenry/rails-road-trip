@@ -7,9 +7,15 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users
-  resources :road_trips
-  resources :destinations
+  resources :users do
+    resources :road_trips, only: [:show, :index]
+  end
+  resources :road_trips do
+    resources :destinations, only: [:show, :index]
+  end
+  resources :destinations do
+    resources :tags, only: [:show, :index]
+  end
   resources :tags
   resources :user_road_trips, only: [:create]
   # The priority is based upon order of creation: first created -> highest priority.
