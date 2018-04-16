@@ -16,4 +16,10 @@
       <%= f.submit %>
     </div>
   <% end %>
+  <br>
+  <% if logged_in? %>
+    <%= link_to 'Back', user_path(current_user) %>
+  <% else %>
+    <%= link_to 'Back', root_path %>
+  <% end %>
 </div></center>
