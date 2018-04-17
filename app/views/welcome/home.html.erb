@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron"><center>  
   <h1 class="display-3">Welcome<%= ', ' + current_user.name if current_user.id %>! </h1>
   <p class="lead">This is a simple web application for creating road trips in the continental US.</p>
   <hr class="my-4">
@@ -10,4 +10,4 @@
       <%= link_to "Sign In with Github", "/auth/github", {class: "btn btn-primary btn-lg"} %>
     </p>
   <% end %>
-</div>
+</center></div>
