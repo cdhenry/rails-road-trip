@@ -1,0 +1,16 @@
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :description %>
+    <%= f.text_area :description, size: "70x5" %>
+    <%= f.label :total_miles %>
+    <%= f.number_field :total_miles %><br>
+    <%= f.hidden_field :author_id, value: current_user.id %>
+<div class="card mb-3">
+  <h3 class="card-header">Add Destinations</h3>
+  <div class="card-body">
+    <%= f.collection_check_boxes(:destination_ids, Destination.all, :id, :name) do |b| %>
+      <%= b.check_box %>
+      <%= b.label %><br>
+    <%end%>
+  </div>
+</div>

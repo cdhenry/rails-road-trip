@@ -1,0 +1,25 @@
+    <%= f.label :stop_order %>
+    <%= f.number_field :stop_order %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :description %>
+    <%= f.text_area :description, size: "70x5" %>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address %><br>
+    <h6 class="card-subtitle text-muted">Create a few new descriptive tags if you don't see any that describe this destination.</h6><br>
+    <%= f.fields_for :tags, f.object.tags.build do |tags_fields| %>
+      <%= render 'tag_fields', f: tags_fields %>
+    <% end %>
+<div class="card mb-3">
+  <h3 class="card-header">Add Tags</h3>
+  <div class="card-body">
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :title) do |b| %>
+      <%= b.check_box %>
+      <%= b.label %><br>
+    <%end%>
+  </div>
+</div>

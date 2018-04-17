@@ -1,0 +1,19 @@
+<%= form_for(@destination_road_trip) do |f| %>
+  <%= render partial: 'layouts/form_errors', locals: { model: @destination_road_trip } %>
+  <div class="card mb-3" style="height: 100%; width:49%; float:left; margin:1px;">
+    <%= f.fields_for :road_trip, f.object.road_trip do |road_trip_fields| %>
+      <%= render 'road_trip_fields', f: road_trip_fields %>
+    <% end %>
+  </div>
+
+  <div class="card mb-3" style="height: 100%; width:49%; float:right; margin:1px;">
+    <h3 class="card-header">Create A New Destination For This Trip</h3><br>
+    <%= f.fields_for :destination do |destination_fields| %>
+      <%= render 'destination_fields', f: destination_fields %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create/Edit Your Road Trip", class: "btn btn-primary btn-lg btn-block"%>
+    <% end %>
+  </div>
