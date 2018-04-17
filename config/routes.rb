@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   end
   resources :tags
   resources :user_road_trips, only: [:create]
+  resources :destination_road_trips do
+    resources :road_trips
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
