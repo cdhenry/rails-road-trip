@@ -8,7 +8,7 @@
 
   <div class="card mb-3" style="height: 100%; width:49%; float:right; margin:1px;">
     <h3 class="card-header">Create A New Destination For This Trip</h3><br>
-    <%= f.fields_for :destination do |destination_fields| %>
+    <%= f.fields_for :destination, @destination_road_trip.new_destination do |destination_fields| %>
       <%= render 'destination_fields', f: destination_fields %>
     <% end %>
   </div>
