@@ -14,6 +14,8 @@
         </div>
       <% end %>
 
+      <%= f.hidden_field :author_id, value: current_user.id %>
+
       <div class="form-group">
         <%= f.label :title %><br>
         <%= f.text_field :title %>
@@ -78,8 +80,6 @@
       </table>
     </div>
   </div>
-
-  <%= f.hidden_field :author_id, value: current_user.id %>
 
   <div class="actions">
     <%= f.submit class: "btn btn-primary btn-lg btn-block"%>

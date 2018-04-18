@@ -34,7 +34,7 @@
     <div class="card-footer text-muted">
       Last Updated At: <%= @road_trip.updated_at %> |
       <% if current_user.id == @road_trip.author_id %>
-        <%= link_to 'Edit', edit_road_trip_path(@road_trip) %> |
+        <%= link_to 'Edit', edit_user_created_trip_path(current_user, @road_trip) %> |
       <% end %>
 
       <%= link_to 'All Road Trips', road_trips_path %>
