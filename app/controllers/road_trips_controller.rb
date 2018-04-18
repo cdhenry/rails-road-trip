@@ -34,6 +34,7 @@ class RoadTripsController < ApplicationController
 
   def update
     if @road_trip.update(road_trip_params)
+      @road_trip.update(destination_params)
       redirect_to @road_trip
     else
       render :edit
@@ -61,17 +62,26 @@ class RoadTripsController < ApplicationController
     end
 
     def destination_params
+      cleanse_drt_attributes
       params.require(:road_trip).permit(
         destinations_attributes: [:name, :description, :city, :state, :street_address, :stop_order,
           tags_attributes: [:tag_1, :tag_2, :tag_3]],
         destination_road_trips_attributes: [:destination_id, :destination_order]
-      ) #you also capture destination_ids:[] for road_trip object but are not using it
+      ) # you also capture destination_ids [], but are only using them in the cleanse function
     end
 
     def authorize
       if current_user.id != @road_trip.author_id && !current_user.admin
         flash[:error] = "You can only edit trips you have created."
         redirect_to @road_trip
+      end
+    end
+
+    def cleanse_drt_attributes
+      params[:road_trip][:destination_road_trips_attributes].values.each_with_index do |drt, i|
+        if !params[:road_trip][:destination_ids].include?(drt["destination_id"])
+          params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+        end
       end
     end
 end

@@ -48,6 +48,9 @@ class RoadTrip < ActiveRecord::Base
       if drt = self.destination_road_trips.find_by(destination_id: destination_road_trip_attribute["destination_id"])
         drt.destination_order = destination_road_trip_attribute["destination_order"]
         drt.save
+      else
+        self.destination_road_trips.build(destination_id: destination_road_trip_attribute["destination_id"],
+          destination_order: destination_road_trip_attribute["destination_order"])
       end
     end
   end
