@@ -33,10 +33,10 @@ class RoadTrip < ActiveRecord::Base
       destination_attribute.delete("stop_order")
       tags = destination_attribute["tags_attributes"].first[1]
       destination_attribute.delete("tags_attributes")
-      binding.pry
+
       destination = Destination.find_or_initialize_by(destination_attribute)
       set_tags(tags, destination)
-      binding.pry
+
       if destination.save
         self.destination_road_trips.create(destination_id: destination.id, destination_order: stop_order)
       end
