@@ -2,17 +2,7 @@
   <%= form_for(@destination) do |f| %>
     <div class="card mb-3" style="height: 100%; width:46%; float:left; margin:1px">
       <div class="card-body">
-        <% if @destination.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@destination.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-            <ul>
-            <% @destination.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <%= render partial: 'layouts/form_errors', locals: { model: @destination } %>
 
         <%= f.hidden_field :author_id, value: @user.id %>
 

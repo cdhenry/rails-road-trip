@@ -2,12 +2,13 @@ class User < ActiveRecord::Base
   scope :road_warriors, -> {all.order(miles_driven: :desc)}
 
   belongs_to :current_trip, class_name: 'RoadTrip', foreign_key: 'current_trip_id'
-
   has_many :user_road_trips, dependent: :delete_all
   has_many :road_trips, through: :user_road_trips
 
   accepts_nested_attributes_for :user_road_trips
 
+  validates :name, presence: true
+  validates :email, presence: true
   has_secure_password
 
   def trips_created
