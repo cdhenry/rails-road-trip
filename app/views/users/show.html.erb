@@ -24,10 +24,21 @@
     </div>
     <ul class="list-group list-group-flush">
       <% if @user.trips_created.empty? %>
-        <li class="list-group-item"><center>No Trips Created</center></li>
+        <li class="list-group-item"><center><%= link_to "Create a Trip!", new_user_created_trip_path(@user) %></center></li>
       <% end %>
       <% @user.trips_created.each do |trip| %>
-        <li class="list-group-item"><%= link_to trip.title, road_trip_path(trip) %></li>
+        <li class="list-group-item"><%= link_to trip.title, user_created_trip_path(@user, trip) %></li>
+      <% end %>
+    </ul>
+    <div class="card-body">
+      <p class="card-text">Destinations Created:</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% if @user.destinations_created.empty? %>
+        <li class="list-group-item"><center><%= link_to "Create a Destination!", new_user_destination_path(@user) %></center></li>
+      <% end %>
+      <% @user.destinations_created.each do |destination| %>
+        <li class="list-group-item"><%= link_to destination.name, user_destination_path(@user, destination) %></li>
       <% end %>
     </ul>
     <div class="card-body">
