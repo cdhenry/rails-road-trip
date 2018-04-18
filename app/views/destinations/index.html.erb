@@ -1,4 +1,4 @@
-<h1>Destinations <%= link_to 'Create New Destination', new_destination_path, {class: "btn btn-primary"} %> </h1>
+<h1><%= link_to "Destinations", destinations_path, style: "text-decoration:none;" %> <%= link_to 'Create New Destination', new_user_destination_path(current_user), {class: "btn btn-primary"} %> </h1>
 
 <table class="table table-hover">
   <thead>
@@ -7,9 +7,7 @@
       <th scope="col">Description</th>
       <th scope="col">City, State</th>
       <th scope="col">Tags</th>
-      <% if current_user.admin %>
-        <th colspan=3>Controls</th>
-      <% end %>
+      <th colspan=3><center>Controls</center></th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +17,7 @@
         <td><%= destination.description %></td>
         <td><%= destination.city_and_state %></td>
         <td><%= link_to destination.tags.count, destination_tags_path(destination) if destination.tags.count > 0 %></td>
-        <% if current_user.admin %>
+        <% if current_user.admin || destination.author_id == current_user.id %>
           <%= render partial: "users/admin/controls", locals: {model: destination} %>
         <% end %>
       </tr>
