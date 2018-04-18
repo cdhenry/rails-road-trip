@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :road_trips, as: "created_trips", only: [:show, :index]
+    resources :destinations
   end
   resources :road_trips do
     resources :destinations, only: [:show, :index]

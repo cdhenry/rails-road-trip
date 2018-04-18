@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414132847) do
+ActiveRecord::Schema.define(version: 20180418205736) do
 
   create_table "destination_road_trips", force: :cascade do |t|
     t.integer  "road_trip_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180414132847) do
     t.string   "street_address"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "author_id"
   end
 
   create_table "road_trips", force: :cascade do |t|

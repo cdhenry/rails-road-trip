@@ -14,3 +14,4 @@
 <%= f.fields_for :tags, f.object.tags.build do |tags_fields| %>
   <%= render 'tag_fields', f: tags_fields %>
 <% end %>
+<%= f.hidden_field :author_id, value: current_user.id %>

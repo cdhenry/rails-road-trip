@@ -11,7 +11,8 @@
     description: Faker::Hipster.paragraph,
     city: Faker::Address.city,
     state: Faker::Address.state_abbr,
-    street_address: Faker::Address.street_address
+    street_address: Faker::Address.street_address,
+    author_id: rand(1..10)
   )
   RoadTrip.create(
     author_id: rand(1..10),
