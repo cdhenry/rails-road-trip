@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
     RoadTrip.where(author_id: self.id)
   end
 
+  def destinations_created
+    Destination.where(author_id: self.id)
+  end
+
   def user_road_trips_attributes=(user_road_trip_attributes)
     user_road_trip_attributes.values.each do |user_road_trip_attribute|
       user_road_trip = UserRoadTrip.find_or_initialize_by(road_trip_id: user_road_trip_attribute["road_trip_id"], user_id: self.id)

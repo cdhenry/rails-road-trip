@@ -7,6 +7,7 @@ class Destination < ActiveRecord::Base
   validates :state, presence: true
   validates :street_address, presence: true
   validates :street_address, uniqueness: true
+  validates :author_id, presence: true
 
   has_many :destination_tags
   has_many :tags, through: :destination_tags
