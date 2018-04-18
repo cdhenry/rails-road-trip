@@ -19,7 +19,17 @@ class RoadTripsController < ApplicationController
   end
 
   def edit
-
+    if params[:user_id]
+      user = User.find_by(id: params[:user_id])
+      if user.nil?
+        redirect_to users_path, alert: "User not found."
+      else
+        @road_trip = RoadTrip.find_by(id: params[:id], author_id: params[:user_id])
+        redirect_to user_created_trips_path(user), alert: "No trips found." if @road_trip.nil?
+      end
+    else
+      @road_trip = RoadTrip.find(params[:id])
+    end
   end
 
   def create
@@ -64,7 +74,7 @@ class RoadTripsController < ApplicationController
     def destination_params
       cleanse_drt_attributes
       params.require(:road_trip).permit(
-        destinations_attributes: [:name, :description, :city, :state, :street_address, :stop_order,
+        destinations_attributes: [:name, :description, :city, :state, :street_address, :author_id, :stop_order,
           tags_attributes: [:tag_1, :tag_2, :tag_3]],
         destination_road_trips_attributes: [:destination_id, :destination_order]
       ) # you also capture destination_ids [], but are only using them in the cleanse function

@@ -14,13 +14,20 @@ class DestinationsController < ApplicationController
   end
 
   def new
-    @destination = Destination.new
+    @destination = Destination.new(author_id: params[:author_id])
   end
 
   def edit
-    if !current_user.admin
-      flash[:error] = "Only admin can edit destinations at the moment."
-      redirect_to @destination
+    if params[:user_id]
+      user = User.find_by(id: params[:user_id])
+      if user.nil?
+        redirect_to users_path, alert: "User not found."
+      else
+        @destination = Destination.find_by(id: params[:id], author_id: params[:user_id])
+        redirect_to user_created_trips_path(user), alert: "No destinations found." if @destination.nil?
+      end
+    else
+      @destination = Destination.find(params[:id])
     end
   end
 
@@ -53,12 +60,12 @@ class DestinationsController < ApplicationController
     end
 
     def destination_params
-      params.require(:destination).permit(:name, :description, :city, :state, :street_address, tag_ids:[], tags_attributes: [:tag_1, :tag_2, :tag_3])
+      params.require(:destination).permit(:name, :description, :city, :state, :street_address, :author_id, tag_ids:[], tags_attributes: [:tag_1, :tag_2, :tag_3])
     end
 
     def authorize
-      if !current_user.admin
-        flash[:error] = "Only admin can edit tags at the moment."
+      if @destination.author_id != current_user.id && !current_user.admin
+        flash[:error] = "You can only edit destinations you've created."
         redirect_to @destination
       end
     end
