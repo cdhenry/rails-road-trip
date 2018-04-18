@@ -53,3 +53,10 @@ User.create(
   password: "password",
   admin: true
 )
+
+User.create(
+  name: "Mayor Junius Bobbledoonary",
+  email: "mayor@thewall.com",
+  password: "password",
+  admin: false
+)

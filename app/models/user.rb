@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  scope :road_warriors, -> {all.order(miles_driven: :desc)}
+
   belongs_to :current_trip, class_name: 'RoadTrip', foreign_key: 'current_trip_id'
 
   has_many :user_road_trips
@@ -7,10 +9,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_road_trips
 
   has_secure_password
-
-  def self.road_warriors
-    all.order(miles_driven: :desc)
-  end
 
   def trips_created
     RoadTrip.where(author_id: self.id)
