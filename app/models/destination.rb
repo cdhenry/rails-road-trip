@@ -9,7 +9,7 @@ class Destination < ActiveRecord::Base
   validates :street_address, uniqueness: true
   validates :author_id, presence: true
 
-  has_many :destination_tags
+  has_many :destination_tags, dependent: :delete_all
   has_many :tags, through: :destination_tags
   has_many :destination_road_trips
   has_many :road_trips, through: :destination_road_trips

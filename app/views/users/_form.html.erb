@@ -1,5 +1,5 @@
 <br /><center><div class="jumbotron" style="height:50%; width:50%;">
-  <%= form_for current_user do |f| %>
+  <%= form_for @user do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -18,7 +18,7 @@
   <% end %>
   <br>
   <% if logged_in? %>
-    <%= link_to 'Back', user_path(current_user) %>
+    <%= link_to 'Back', user_path(@user) %>
   <% else %>
     <%= link_to 'Back', root_path %>
   <% end %>

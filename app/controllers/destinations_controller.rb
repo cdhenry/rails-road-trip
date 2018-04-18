@@ -19,12 +19,12 @@ class DestinationsController < ApplicationController
 
   def edit
     if params[:user_id]
-      user = User.find_by(id: params[:user_id])
-      if user.nil?
+      @user = User.find_by(id: params[:user_id])
+      if @user.nil?
         redirect_to users_path, alert: "User not found."
       else
         @destination = Destination.find_by(id: params[:id], author_id: params[:user_id])
-        redirect_to user_created_trips_path(user), alert: "No destinations found." if @destination.nil?
+        redirect_to user_created_trips_path(@user), alert: "No destinations found." if @destination.nil?
       end
     else
       @destination = Destination.find(params[:id])

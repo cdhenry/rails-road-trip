@@ -7,7 +7,7 @@ class RoadTrip < ActiveRecord::Base
 
   has_many :user_road_trips
   has_many :users, through: :user_road_trips
-  has_many :destination_road_trips
+  has_many :destination_road_trips, dependent: :delete_all
   has_many :destinations, through: :destination_road_trips
   has_many :tags, through: :destinations
 
