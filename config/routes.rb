@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
-    resources :road_trips, as: "created_trips", only: [:show, :index]
+    resources :road_trips, as: "created_trips"
     resources :destinations
   end
   resources :road_trips do
@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
   resources :tags
   resources :user_road_trips, only: [:create]
+
+  #this was for testing a different kind of form based on the join rather than the road trip model
   resources :destination_road_trips do
     resources :road_trips
   end
