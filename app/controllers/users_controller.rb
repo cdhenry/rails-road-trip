@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   #before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:edit, :update, :destroy]
+  skip_before_action :require_login, only: [:new, :create]
 
   def index
     if current_user.admin
