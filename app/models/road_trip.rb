@@ -12,8 +12,8 @@ class RoadTrip < ActiveRecord::Base
   has_many :tags, through: :destinations
 
   accepts_nested_attributes_for :destinations
-  #accepts_nested_attributes_for :destination_road_trips
-  #accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :destination_road_trips
+  accepts_nested_attributes_for :tags
 
   def author
     User.find(self.author_id)
@@ -42,13 +42,13 @@ class RoadTrip < ActiveRecord::Base
       end
     end
   end
-  #
-  # def destination_road_trips_attributes=(destination_road_trips_attributes)
-  #   destination_road_trips_attributes.values.each do |destination_road_trip_attribute|
-  #     if drt = self.destination_road_trips.find_by(destination_id: destination_road_trip_attribute["destination_id"])
-  #       drt.destination_order = destination_road_trip_attribute["destination_order"]
-  #       drt.save
-  #     end
-  #   end
-  # end
+
+  def destination_road_trips_attributes=(destination_road_trips_attributes)
+    destination_road_trips_attributes.values.each do |destination_road_trip_attribute|
+      if drt = self.destination_road_trips.find_by(destination_id: destination_road_trip_attribute["destination_id"])
+        drt.destination_order = destination_road_trip_attribute["destination_order"]
+        drt.save
+      end
+    end
+  end
 end
