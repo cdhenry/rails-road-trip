@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  before_destroy :destroy_authored_trips, :destroy_authored_destinations
   scope :road_warriors, -> {all.order(miles_driven: :desc)}
 
   belongs_to :current_trip, class_name: 'RoadTrip', foreign_key: 'current_trip_id'
@@ -26,4 +27,9 @@ class User < ActiveRecord::Base
       user_road_trip.save
     end
   end
+
+  private
+    def destroy_authored_trips
+      RoadTrip.where(author_id: self.id).destroy_all
+    end
 end

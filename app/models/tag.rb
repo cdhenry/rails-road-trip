@@ -5,7 +5,7 @@ class Tag < ActiveRecord::Base
   validates :title, presence: true
   validates :title, uniqueness: true
 
-  has_many :destination_tags
+  has_many :destination_tags, dependent: :delete_all
   has_many :destinations, through: :destination_tags
 
   def times_used

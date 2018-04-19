@@ -5,7 +5,7 @@ class RoadTrip < ActiveRecord::Base
   validates :author_id, presence: true
   validates_associated :destinations
 
-  has_many :user_road_trips
+  has_many :user_road_trips, dependent: :delete_all
   has_many :users, through: :user_road_trips
   has_many :destination_road_trips, dependent: :delete_all
   has_many :destinations, through: :destination_road_trips
@@ -16,7 +16,7 @@ class RoadTrip < ActiveRecord::Base
   accepts_nested_attributes_for :tags
 
   def author
-    User.find(self.author_id)
+    User.find(self.author_id) || false
   end
 
   def set_tags(tags, destination)

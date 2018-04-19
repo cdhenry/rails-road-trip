@@ -11,7 +11,7 @@ class Destination < ActiveRecord::Base
 
   has_many :destination_tags, dependent: :delete_all
   has_many :tags, through: :destination_tags
-  has_many :destination_road_trips
+  has_many :destination_road_trips, dependent: :delete_all
   has_many :road_trips, through: :destination_road_trips
   has_many :users, through: :road_trips
 
