@@ -35,8 +35,13 @@ class RoadTripsController < ApplicationController
   def create
     @road_trip = RoadTrip.new(road_trip_params)
     if @road_trip.save
-      @road_trip.update(destination_params)
-      redirect_to @road_trip
+      if check_destination
+        @road_trip.update(destination_params)
+        redirect_to @road_trip
+      else
+        flash[:error] = "Your new destination must have a name, description, city, state, and street address."
+        render :new
+      end
     else
       render :new
     end
@@ -87,11 +92,21 @@ class RoadTripsController < ApplicationController
       end
     end
 
+    def check_destination
+      !(params[:road_trip][:destinations_attributes]["0"].values[0..5].include?("") && params[:road_trip][:destinations_attributes]["0"].values[0..5].find{|e| /\S/ =~ e})
+    end
+
     def cleanse_drt_attributes
-      params[:road_trip][:destination_road_trips_attributes].values.each_with_index do |drt, i|
-        if !params[:road_trip][:destination_ids].include?(drt["destination_id"])
-          params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+      if params[:road_trip][:destination_ids]
+        params[:road_trip][:destination_road_trips_attributes].values.each_with_index do |drt, i|
+          if !params[:road_trip][:destination_ids].include?(drt["destination_id"])
+            params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+          end
         end
+      else
+        params[:road_trip][:destination_road_trips_attributes].values.each_with_index {|drt, i|
+          params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+        }
       end
     end
 end
