@@ -1,21 +1,22 @@
 # rails-road-trip
 An app that helps a user create and share ideas for road trips across the US
-Things you may want to cover:
 
-* Ruby version
+Installation Guide:
 
-* System dependencies
+Github Repo: https://github.com/cdhenry/rails-road-trip
 
-* Configuration
+rails-road-trip makes use of bundler for Ruby gem handling.
 
-* Database creation
+In your console, after cloning repo, type 'bundle install'. When your gems have been installed/updated, you should migrate the database with 'rake db:migrate' and seed the database with 'rake db:seed'.
 
-* Database initialization
+At present user authentication is possible through Github.
 
-* How to run the test suite
+Contributor's Guide:
 
-* Services (job queues, cache servers, search engines, etc.)
+All PRs will be considered, please reach out to cdhenry@gmail.com if you have requests or would like to contribute.
 
-* Deployment instructions
+License: (See LICENSE)
 
-* ...
+MIT License
+
+Copyright (c) 2018 Chris Henry
