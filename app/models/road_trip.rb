@@ -10,6 +10,7 @@ class RoadTrip < ActiveRecord::Base
   has_many :destination_road_trips, dependent: :delete_all
   has_many :destinations, through: :destination_road_trips
   has_many :tags, through: :destinations
+  has_many :pictures, as: :imageable
 
   accepts_nested_attributes_for :destinations
   accepts_nested_attributes_for :destination_road_trips
