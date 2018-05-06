@@ -1,48 +1,34 @@
 <div class="card mb-3">
   <%= form_for(@road_trip) do |f| %>
-  <div class="card mb-3">
-    <div style="float:left;">
+  <div class="card mb-3" style="height: 100%; width:46%; float:left; margin:1px">
+    <div class="card-body">
       <%= render partial: 'layouts/form_errors', locals: { model: @road_trip } %>
 
       <%= f.hidden_field :author_id, value: @user.id %>
 
-      <div class="form-group" style="float:left;">
+      <div class="form-group">
         <%= f.label :title %><br>
         <%= f.text_field :title, size: "70" %>
       </div>
-
-      <div class="form-group" style="float:right;">
-        <%= f.label :add_desitnation %><br>
-        <%= f.text_field :title, size: "70" %>
-      </div>
-      <br><br>
-      <div class="form-group" style="float:left;">
+      <br>
+      <div class="form-group">
         <%= f.label :description %><br>
         <%= f.text_area :description, size: "70x5" %>
       </div>
-
-      <div class="form-group" style="float:right;">
-        <%= f.label :description %><br>
-        <%= f.text_area :description, size: "70x5" %>
-      </div>
-      <br><br><br><br><br><br><br><br><br>
-      <div class="form-group" style="float:left;">
-        <%= f.label :total_miles %><br>
-        <%= f.number_field :total_miles %>
-      </div>
-      <div class="form-group" style="float:right;">
+      <br>
+      <div class="form-group">
         <%= f.label :total_miles %><br>
         <%= f.number_field :total_miles %>
       </div>
     </div>
 
-    <!-- <div class="card-body">
+    <div class="card-body">
       <h3 class="card-header">Create A New Destination</h3><br>
-      <%#= f.fields_for :destinations, @road_trip.destinations.build do |destinations_fields| %>
-        <%#= render 'destination_fields', f: destinations_fields %>
-      <%# end %>
+      <%= f.fields_for :destinations, @road_trip.destinations.build do |destinations_fields| %>
+        <%= render 'destination_fields', f: destinations_fields %>
+      <% end %>
     </div>
-  <br> -->
+  <br>
 </div>
 
   <div class="card mb-3" style="height: 100%; width:52%; float:right; margin:1px">
