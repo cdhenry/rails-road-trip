@@ -4,7 +4,7 @@ $(function(){
       let $ol = $("div.comments ol");
       $ol.html("")
       json.forEach(function(comment){
-        $ol.append(`<li><%= get_user_name(${comment.author_id}) %> : ${comment.body} </li>`)
+        $ol.append("<li>" + comment.author_id + " : " + comment.body + "</li>")
       });
     });
     e.preventDefault();
