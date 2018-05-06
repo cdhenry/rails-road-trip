@@ -1,6 +1,6 @@
-class CreateDestinationRoadTrips < ActiveRecord::Migration
+class CreateRoadTripDestinations < ActiveRecord::Migration
   def change
-    create_table :destination_road_trips do |t|
+    create_table :road_trip_destinations do |t|
       t.belongs_to :road_trip
       t.belongs_to :destination
       t.integer :destination_order

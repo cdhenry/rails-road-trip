@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418205736) do
-
-  create_table "destination_road_trips", force: :cascade do |t|
-    t.integer  "road_trip_id"
-    t.integer  "destination_id"
-    t.integer  "destination_order"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
+ActiveRecord::Schema.define(version: 20180505211852) do
 
   create_table "destination_tags", force: :cascade do |t|
     t.integer  "destination_id"
@@ -37,6 +29,24 @@ ActiveRecord::Schema.define(version: 20180418205736) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "author_id"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+
+  create_table "road_trip_destinations", force: :cascade do |t|
+    t.integer  "road_trip_id"
+    t.integer  "destination_id"
+    t.integer  "destination_order"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "road_trips", force: :cascade do |t|

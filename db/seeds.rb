@@ -41,7 +41,7 @@ end
     destination_id: rand(1..10),
     tag_id: rand(1..10)
   )
-  DestinationRoadTrip.create(
+  RoadTripDestination.create(
     destination_id: rand(1..10),
     road_trip_id: rand(1..10),
     destination_order: rand(1..10)

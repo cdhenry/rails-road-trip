@@ -1,4 +1,4 @@
-class DestinationRoadTrip < ActiveRecord::Base
+class RoadTripDestination < ActiveRecord::Base
   belongs_to :destination
   belongs_to :road_trip
   validates_associated :destination
@@ -8,7 +8,7 @@ class DestinationRoadTrip < ActiveRecord::Base
 
   def new_destination
     destination = Destination.new
-    destination.destination_road_trips.build(road_trip_id: self.road_trip_id)
+    destination.road_trip_destinations.build(road_trip_id: self.road_trip_id)
     destination
   end
 end

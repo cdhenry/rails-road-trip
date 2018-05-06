@@ -6,6 +6,7 @@ class RoadTripsController < ApplicationController
   def index
     if params[:user_id]
       @road_trips = User.find(params[:user_id]).road_trips
+      render json: @road_trips, status: 200
     else
       @road_trips = RoadTrip.all
     end
@@ -77,11 +78,11 @@ class RoadTripsController < ApplicationController
     end
 
     def destination_params
-      cleanse_drt_attributes
+      cleanse_rtd_attributes
       params.require(:road_trip).permit(
         destinations_attributes: [:name, :description, :city, :state, :street_address, :author_id, :stop_order,
           tags_attributes: [:tag_1, :tag_2, :tag_3]],
-        destination_road_trips_attributes: [:destination_id, :destination_order]
+        road_trip_destinations_attributes: [:destination_id, :destination_order]
       ) # you also capture destination_ids [], but are only using them in the cleanse function
     end
 
@@ -96,16 +97,16 @@ class RoadTripsController < ApplicationController
       !(params[:road_trip][:destinations_attributes]["0"].values[0..5].include?("") && params[:road_trip][:destinations_attributes]["0"].values[0..5].find{|e| /\S/ =~ e})
     end
 
-    def cleanse_drt_attributes
+    def cleanse_rtd_attributes
       if params[:road_trip][:destination_ids]
-        params[:road_trip][:destination_road_trips_attributes].values.each_with_index do |drt, i|
-          if !params[:road_trip][:destination_ids].include?(drt["destination_id"])
-            params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+        params[:road_trip][:road_trip_destinations_attributes].values.each_with_index do |rtd, i|
+          if !params[:road_trip][:destination_ids].include?(rtd["destination_id"])
+            params[:road_trip][:road_trip_destinations_attributes].delete("#{i}")
           end
         end
       else
-        params[:road_trip][:destination_road_trips_attributes].values.each_with_index {|drt, i|
-          params[:road_trip][:destination_road_trips_attributes].delete("#{i}")
+        params[:road_trip][:road_trip_destinations_attributes].values.each_with_index {|rtd, i|
+          params[:road_trip][:road_trip_destinations_attributes].delete("#{i}")
         }
       end
     end

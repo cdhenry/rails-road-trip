@@ -1,34 +1,48 @@
 <div class="card mb-3">
   <%= form_for(@road_trip) do |f| %>
-  <div class="card mb-3" style="height: 100%; width:46%; float:left; margin:1px">
-    <div class="card-body">
+  <div class="card mb-3">
+    <div style="float:left;">
       <%= render partial: 'layouts/form_errors', locals: { model: @road_trip } %>
 
       <%= f.hidden_field :author_id, value: @user.id %>
 
-      <div class="form-group">
+      <div class="form-group" style="float:left;">
         <%= f.label :title %><br>
-        <%= f.text_field :title %>
-      </div><br>
+        <%= f.text_field :title, size: "70" %>
+      </div>
 
-      <div class="form-group">
+      <div class="form-group" style="float:right;">
+        <%= f.label :add_desitnation %><br>
+        <%= f.text_field :title, size: "70" %>
+      </div>
+      <br><br>
+      <div class="form-group" style="float:left;">
         <%= f.label :description %><br>
         <%= f.text_area :description, size: "70x5" %>
-      </div><br>
+      </div>
 
-      <br>
-      <div class="form-group">
+      <div class="form-group" style="float:right;">
+        <%= f.label :description %><br>
+        <%= f.text_area :description, size: "70x5" %>
+      </div>
+      <br><br><br><br><br><br><br><br><br>
+      <div class="form-group" style="float:left;">
+        <%= f.label :total_miles %><br>
+        <%= f.number_field :total_miles %>
+      </div>
+      <div class="form-group" style="float:right;">
         <%= f.label :total_miles %><br>
         <%= f.number_field :total_miles %>
       </div>
     </div>
-    <div class="card-body">
+
+    <!-- <div class="card-body">
       <h3 class="card-header">Create A New Destination</h3><br>
-      <%= f.fields_for :destinations, @road_trip.destinations.build do |destinations_fields| %>
-        <%= render 'destination_fields', f: destinations_fields %>
-      <% end %>
+      <%#= f.fields_for :destinations, @road_trip.destinations.build do |destinations_fields| %>
+        <%#= render 'destination_fields', f: destinations_fields %>
+      <%# end %>
     </div>
-  <br>
+  <br> -->
 </div>
 
   <div class="card mb-3" style="height: 100%; width:52%; float:right; margin:1px">
@@ -46,22 +60,22 @@
         </thead>
         <tbody>
           <% @destinations.each.with_index(1) do |destination, i| %>
-            <%= f.fields_for :destination_road_trips, @road_trip.destination_road_trips.build(destination_id: destination.id) do |drts_fields| %>
-              <% if drts_fields.object.destination_order = destination.on_this_trip?(@road_trip) %>
+            <%= f.fields_for :road_trip_destinations, @road_trip.road_trip_destinations.build(destination_id: destination.id) do |rtds_fields| %>
+              <% if rtds_fields.object.destination_order = destination.on_this_trip?(@road_trip) %>
                 <tr class="table-success">
                   <td><%= destination.name %></td>
                   <td><%= destination.city_and_state %></td>
                   <td><center><input type="checkbox" value="<%=i%>" name="road_trip[destination_ids][]" id="road_trip_destination_ids_<%=i%>" checked></input></center></td>
-                  <td><center><%= drts_fields.number_field :destination_order, style: 'width: 50%;' %></center></td>
-                  <%= drts_fields.hidden_field :destination_id %>
+                  <td><center><%= rtds_fields.number_field :destination_order, style: 'width: 50%;' %></center></td>
+                  <%= rtds_fields.hidden_field :destination_id %>
                 </tr>
               <% else %>
                 <tr class="table-active">
                   <td><%= destination.name %></td>
                   <td><%= destination.city_and_state %></td>
                   <td><center><input type="checkbox" value="<%=i%>" name="road_trip[destination_ids][]" id="road_trip_destination_ids_<%=i%>"></input></center></td>
-                  <td><center><%= drts_fields.number_field :destination_order,  style: 'width: 50%;' %></center></td>
-                  <%= drts_fields.hidden_field :destination_id %>
+                  <td><center><%= rtds_fields.number_field :destination_order,  style: 'width: 50%;' %></center></td>
+                  <%= rtds_fields.hidden_field :destination_id %>
                 </tr>
               <% end %>
             <% end %>

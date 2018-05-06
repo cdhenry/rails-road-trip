@@ -11,8 +11,8 @@ class Destination < ActiveRecord::Base
 
   has_many :destination_tags, dependent: :delete_all
   has_many :tags, through: :destination_tags
-  has_many :destination_road_trips, dependent: :delete_all
-  has_many :road_trips, through: :destination_road_trips
+  has_many :road_trip_destinations, dependent: :delete_all
+  has_many :road_trips, through: :road_trip_destinations
   has_many :users, through: :road_trips
 
   accepts_nested_attributes_for :tags
@@ -22,9 +22,9 @@ class Destination < ActiveRecord::Base
   end
 
   def on_this_trip?(road_trip)
-    drt = DestinationRoadTrip.where(road_trip_id: road_trip.id).where(destination_id: self.id)
-    if !drt.empty?
-      drt.first.destination_order
+    rtd = RoadTripDestination.where(road_trip_id: road_trip.id).where(destination_id: self.id)
+    if !rtd.empty?
+      rtd.first.destination_order
     end
   end
 
