@@ -10,20 +10,23 @@ Rails.application.routes.draw do
   resources :users do
     resources :road_trips, as: "created_trips"
     resources :destinations
+    resources :comments
   end
   resources :road_trips do
     resources :destinations, only: [:show, :index]
+    resources :comments
   end
   resources :destinations do
     resources :tags, only: [:show, :index]
+    resources :comments
   end
   resources :tags
   resources :user_road_trips, only: [:create]
 
   #this was for testing a different kind of form based on the join rather than the road trip model
-  resources :destination_road_trips do
-    resources :road_trips
-  end
+  # resources :road_trip_destinations do
+  #   resources :road_trips
+  # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

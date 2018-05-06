@@ -16,6 +16,7 @@ class RoadTripsController < ApplicationController
   end
 
   def show
+    binding.pry
   end
 
   def new
