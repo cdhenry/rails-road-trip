@@ -31,14 +31,13 @@
         <%= link_to tag.title, tag_path(tag) %> |
       <% end %>
     </div>
-    <div class="card-body">|
-      <% @road_trip.comments.each do |comment| %>
-        <%= comment.body %> |
-      <% end %>
-    </div>
     <div class="card-body">
-      <a href="#" class="card-link" id="load_comments">Load Comments</a>
+      <%= link_to "Load Comments", road_trip_comments_path(@road_trip), class: "load_comments" %>
       <a href="#" class="card-link" id="new_comment">New Comment</a>
+    </div>
+    <div class="comments">
+      <ol>
+      </ol>
     </div>
     <div class="card-footer text-muted">
       Last Updated At: <%= @road_trip.updated_at %> |
@@ -50,3 +49,4 @@
     </div>
   </div>
 </div>
+<!-- <script type="assets/javascript/comments.js"></script> -->

@@ -1,4 +1,4 @@
-class RoadTripsController < ApplicationController
+  class RoadTripsController < ApplicationController
   before_action :set_road_trip, only: [:show, :edit, :update, :destroy]
   before_action :set_destinations, only: [:new, :edit, :update, :create]
   before_action :authorize, only: [:edit, :update, :destroy]
@@ -16,7 +16,6 @@ class RoadTripsController < ApplicationController
   end
 
   def show
-    binding.pry
   end
 
   def new
