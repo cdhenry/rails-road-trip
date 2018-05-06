@@ -1,10 +1,10 @@
 $(function(){
-  $("a.load_comments").on("click", function(e){
+  $("#load_comments").on("click", function(e){
     $.get(this.href).success(function(json){
-      let $ol = $("div.comments ol");
-      $ol.html("")
+      let $ul = $("div.comments ul");
+      $ul.html(" ")
       json.forEach(function(comment){
-        $ol.append("<li>" + comment.author_id + " : " + comment.body + "</li>")
+        $ul.append("<li>" + comment.author.name + " : " + comment.body + "</li>")
       });
     });
     e.preventDefault();
