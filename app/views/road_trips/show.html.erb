@@ -32,8 +32,16 @@
       <% end %>
     </div>
     <div class="card-body" >
-      <%= link_to "Load Comments", road_trip_comments_path(@road_trip), id: "load_comments" %> |
-      <a href="#" class="card-link" id="new_comment">Create New Comment</a>
+      <%= form_for([@road_trip, @road_trip.comments.build]) do |f| %>
+        <%= f.text_area :body %>
+        <%= f.hidden_field :author_id, value: current_user.id %>
+        <%= f.submit %>
+      <% end %>
+      <form action = "">
+        <input size="70" type="text" name="comment" id="comment_body">
+        <input type="submit" value="Comment on Trip" />
+      </form>
+      <%= link_to "Load Comments", road_trip_comments_path(@road_trip), id: "load_comments" %>
     </div>
     <div class="comments">
       <ul>

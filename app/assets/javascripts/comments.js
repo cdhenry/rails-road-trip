@@ -9,4 +9,8 @@ $(function(){
     });
     e.preventDefault();
   });
+
+  $("#new_comment").on("click", function(e){
+
+  });
 });
