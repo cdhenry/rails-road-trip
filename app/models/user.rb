@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   belongs_to :current_trip, class_name: 'RoadTrip', foreign_key: 'current_trip_id'
   has_many :user_road_trips, dependent: :delete_all
   has_many :road_trips, through: :user_road_trips
+  has_many :pictures, as: :imageable
+  has_many :comments, as: :commentable
 
   accepts_nested_attributes_for :user_road_trips
 

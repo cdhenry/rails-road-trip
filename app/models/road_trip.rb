@@ -11,6 +11,7 @@ class RoadTrip < ActiveRecord::Base
   has_many :destinations, through: :road_trip_destinations
   has_many :tags, through: :destinations
   has_many :pictures, as: :imageable
+  has_many :comments, as: :commentable
 
   accepts_nested_attributes_for :destinations
   accepts_nested_attributes_for :road_trip_destinations

@@ -6,9 +6,12 @@ class RoadTripsController < ApplicationController
   def index
     if params[:user_id]
       @road_trips = User.find(params[:user_id]).road_trips
-      render json: @road_trips, status: 200
     else
       @road_trips = RoadTrip.all
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @road_trips }
     end
   end
 

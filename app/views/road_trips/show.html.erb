@@ -21,9 +21,9 @@
       <p class="card-text"><%= @road_trip.description %></p>
     </div>
     <ul class="list-group list-group-flush">
-      <% @road_trip.destination_road_trips.order(:destination_order).each do |destination_road_trip| %>
-        <li class="list-group-item"><%= link_to destination_road_trip.destination.name, destination_path(destination_road_trip.destination), { style: "float:left;" } %>
-          <span class="badge badge-primary" style="float:right;">Stop <%= destination_road_trip.destination_order %></span></li>
+      <% @road_trip.road_trip_destinations.order(:destination_order).each do |road_trip_destination| %>
+        <li class="list-group-item"><%= link_to road_trip_destination.destination.name, destination_path(road_trip_destination.destination), { style: "float:left;" } %>
+          <span class="badge badge-primary" style="float:right;">Stop <%= road_trip_destination.destination_order %></span></li>
       <% end %>
     </ul>
     <div class="card-body">|
