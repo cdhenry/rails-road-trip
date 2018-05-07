@@ -30,7 +30,7 @@
     miles_driven: rand(100..200000)
   )
   Comment.create(
-    body: "This is a comment",
+    body: Faker::Hipster.sentence,
     author_id: rand(1..10),
     commentable_id: rand(1..10),
     commentable_type: RoadTrip

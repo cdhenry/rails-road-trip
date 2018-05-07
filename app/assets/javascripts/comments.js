@@ -28,4 +28,27 @@ $(function(){
       });
     e.preventDefault();
   });
+
+  $("#comments_made").on("click", function(e){
+    $.get(this.href).success(function(json){
+      let $ul = $("div.comments ul");
+      $ul.html(" ");
+      json.forEach(function(comment){
+        debugger;
+        $ul.append("<li>" + comment.type_object.title + " (" + comment.commentable_type.split(/(?=[A-Z])/).join(" ") + ") : " + comment.body + "</li>")
+      });
+    });
+    e.preventDefault();
+  });
+
+  $("#comments_received").on("click", function(e){
+    $.get(this.href).success(function(json){
+      let $ul = $("div.comments ul");
+      $ul.html(" ");
+      json.forEach(function(comment){
+        $ul.append("<li>" + comment.author.name + " : " + comment.body + "</li>")
+      });
+    });
+    e.preventDefault();
+  });
 });

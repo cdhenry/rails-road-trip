@@ -3,8 +3,12 @@ class CommentsController < ApplicationController
   before_action :set_model
 
   def index
-    @comments = @model.comments
-    render json: @comments, status: 200
+    if params.keys.last == "user_id"
+      @comments = Comment.comments_made(@model)
+    else
+      @comments = @model.comments
+    end
+      render json: @comments, status: 200
   end
 
   def show

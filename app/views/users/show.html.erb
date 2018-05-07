@@ -42,8 +42,12 @@
       <% end %>
     </ul>
     <div class="card-body">
-      <a href="#" class="card-link">Comments Made</a>
-      <a href="#" class="card-link">Comments Received</a>
+      <%= link_to "Comments Made", user_comments_path(@user), id: "comments_made" %> | 
+      <a href="#" class="card-link" id="comments_received">Comments Received</a>
+    </div>
+    <div class="comments">
+      <ul>
+      </ul>
     </div>
     <div class="card-footer text-muted">
       Road Warrior Since: <%= @user.created_at %> |
