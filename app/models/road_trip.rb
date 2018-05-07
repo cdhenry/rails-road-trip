@@ -1,5 +1,5 @@
 class RoadTrip < ActiveRecord::Base
-  validates :title, presence: true
+  validates :name, presence: true
   validates :description, presence: true
   validates :total_miles, presence: true
   validates :author_id, presence: true
@@ -22,9 +22,9 @@ class RoadTrip < ActiveRecord::Base
   end
 
   def set_tags(tags, destination)
-    tags.each_value do |title|
-      if title != ""
-        destination.tags.build(title: title)
+    tags.each_value do |name|
+      if name != ""
+        destination.tags.build(name: name)
       end
     end
   end

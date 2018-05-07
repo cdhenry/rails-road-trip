@@ -2,8 +2,8 @@ class Tag < ActiveRecord::Base
   attr_accessor :tag_1, :tag_2, :tag_3
   scope :popularity_ordered, -> {joins(:destination_tags).group("destination_tags.tag_id").order("COUNT(destination_tags.tag_id) DESC")}
 
-  validates :title, presence: true
-  validates :title, uniqueness: true
+  validates :name, presence: true
+  validates :name, uniqueness: true
 
   has_many :destination_tags, dependent: :delete_all
   has_many :destinations, through: :destination_tags
