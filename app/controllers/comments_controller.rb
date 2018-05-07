@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  include CommentsHelper
   before_action :set_model
 
   def index
@@ -14,7 +15,12 @@ class CommentsController < ApplicationController
   def create
     @comment = @model.comments.build(comments_params)
     if @comment.save
-      redirect_to @comment
+      render 'comments/show', layout: false
+      # redirect_to send(model_comments_path(@model), @model)
+    else
+      flash[:error] = "Comment was not created."
+      render `#{@model.class.name}/show`
+      # redirect_to send(model_comments_path(@model), @model)
     end
   end
 
@@ -25,7 +31,7 @@ class CommentsController < ApplicationController
       @model = eval model + ".find(params[:#{key}])"
     end
 
-    def comments_params 
+    def comments_params
       params.require(:comment).permit(:body, :author_id)
     end
 end

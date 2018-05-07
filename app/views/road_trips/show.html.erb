@@ -3,50 +3,45 @@
     <span style="float:left;"><%= @road_trip.title %></span>
     <span style="float:right;"><%= @road_trip.total_miles %> Miles</span>
   </h3>
+
   <div class="card-body">
     <h5 class="card-title">By: <%= @road_trip.author.name %></h5>
     <h6 class="card-subtitle text-muted">Created At: <%= @road_trip.created_at %> </h6>
   </div>
+
   <div class="card-body"><div class="container" role="main">
     <center><img style="height: 200px; width: 400px; display: block; float:left;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image"></center>
+
     <div class="form-group" style="float:right;">
       <%= render partial: "users/badges", locals: {road_trip: @road_trip} %>
       <br>
       <%= render partial: "user_road_trips/buttons", locals: {road_trip: @road_trip} %>
       <br>
     </div>
+
   </div></div>
+
   <div class="container" role="main">
+
     <div class="card-body">
       <p class="card-text"><%= @road_trip.description %></p>
     </div>
+
     <ul class="list-group list-group-flush">
       <% @road_trip.road_trip_destinations.order(:destination_order).each do |road_trip_destination| %>
         <li class="list-group-item"><%= link_to road_trip_destination.destination.name, destination_path(road_trip_destination.destination), { style: "float:left;" } %>
           <span class="badge badge-primary" style="float:right;">Stop <%= road_trip_destination.destination_order %></span></li>
       <% end %>
     </ul>
+
     <div class="card-body">|
       <% @road_trip.tags.uniq.each do |tag| %>
         <%= link_to tag.title, tag_path(tag) %> |
       <% end %>
     </div>
-    <div class="card-body" >
-      <%= form_for([@road_trip, @road_trip.comments.build]) do |f| %>
-        <%= f.text_area :body %>
-        <%= f.hidden_field :author_id, value: current_user.id %>
-        <%= f.submit %>
-      <% end %>
-      <form action = "">
-        <input size="70" type="text" name="comment" id="comment_body">
-        <input type="submit" value="Comment on Trip" />
-      </form>
-      <%= link_to "Load Comments", road_trip_comments_path(@road_trip), id: "load_comments" %>
-    </div>
-    <div class="comments">
-      <ul>
-      </ul>
-    </div>
+
+    <%= render partial: 'comments/form', locals: { model: @road_trip } %>
+
     <div class="card-footer text-muted">
       Last Updated At: <%= @road_trip.updated_at %> |
       <% if current_user.id == @road_trip.author_id %>
@@ -55,5 +50,6 @@
 
       <%= link_to 'All Road Trips', road_trips_path %>
     </div>
+
   </div>
 </div>
