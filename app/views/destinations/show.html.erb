@@ -1,0 +1,33 @@
+<div class="card mb-3">
+  <h3 class="card-header"><%= @destination.name %></h3>
+  <div class="card-body">
+    <h5 class="card-title"><%= @destination.city_and_state %></h5>
+    <h6 class="card-subtitle text-muted"><%= @destination.street_address %></h6>
+  </div>
+  <div class="container" role="main">
+    <center><img style="height: 200px; width: 400px; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image"></center>
+    <div class="card-body">
+      <p class="card-text"><%= @destination.description %></p>
+    </div>
+    <p>Tags:</p>
+    <ul class="list-group list-group-flush">
+      <% if @destination.tags.empty? %>
+        <li class="list-group-item"><center>None</center></li>
+      <% else %>
+        <% @destination.tags.each do |tag| %>
+          <li class="list-group-item"><%= link_to tag.name, tag_path(tag) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= render partial: 'comments/form', locals: { model: @destination } %>
+
+  <div class="card-footer text-muted">
+    Created At: <%= @destination.created_at %> |
+    <% if current_user.admin || @destination.author_id == current_user.id %>
+      <%= link_to 'Edit', edit_user_destination_path(current_user, @destination) %> |
+    <% end %>
+      <%= link_to 'All Destinations', destinations_path %>
+  </div>
+</div>
