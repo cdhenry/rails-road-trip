@@ -1,6 +1,6 @@
 <div class="card mb-3">
   <h3 class="card-header">
-    <span style="float:left;"><%= @road_trip.title %></span>
+    <span style="float:left;"><%= @road_trip.name %></span>
     <span style="float:right;"><%= @road_trip.total_miles %> Miles</span>
   </h3>
 
@@ -36,7 +36,7 @@
 
     <div class="card-body">|
       <% @road_trip.tags.uniq.each do |tag| %>
-        <%= link_to tag.title, tag_path(tag) %> |
+        <%= link_to tag.name, tag_path(tag) %> |
       <% end %>
     </div>
 

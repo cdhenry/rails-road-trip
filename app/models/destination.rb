@@ -32,9 +32,9 @@ class Destination < ActiveRecord::Base
 
   def tags_attributes=(tag_attributes)
     tag_attributes.values.each do |tag_attribute|
-      tag_attribute.each_value do |title|
-        if title != ""
-          self.tags.build(title: title)
+      tag_attribute.each_value do |name|
+        if name != ""
+          self.tags.build(name: title)
         end
       end
     end

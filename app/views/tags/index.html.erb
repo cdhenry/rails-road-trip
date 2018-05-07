@@ -11,7 +11,7 @@
   <tbody>
     <% @tags.each do |tag| %>
       <tr class="table-active">
-        <td><%= link_to tag.title, tag_path(tag) %></td>
+        <td><%= link_to tag.name, tag_path(tag) %></td>
         <td><%= tag.times_used %></td>
         <td><%= link_to tag.last_destination.name, destination_path(tag.last_destination) if tag.last_destination %></td>
         <% if current_user.admin %>

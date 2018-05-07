@@ -16,12 +16,12 @@
   )
   RoadTrip.create(
     author_id: rand(1..10),
-    title: Faker::Book.title,
+    name: Faker::Book.title,
     description: Faker::Hipster.paragraph,
     total_miles: rand(200..2000)
   )
   Tag.create(
-    title: Faker::Hipster.word
+    name: Faker::Hipster.word
   )
   User.create(
     name: Faker::Name.name,
