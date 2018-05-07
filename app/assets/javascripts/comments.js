@@ -20,13 +20,12 @@ $(function(){
     $.ajax({
       type: ($("input[name='_method']").val() || this.method),
       url: this.action,
-      data: $(this).serialize(),
-      success: funtion(response){
+      data: $(this).serialize()
+    }).success(function(response){
         $("#comment_body").val("");
         let $ul = $("div.comments ul");
         $ul.append(response);
-      }
-    });
+      });
     e.preventDefault();
   });
 });

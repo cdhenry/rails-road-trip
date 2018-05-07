@@ -16,11 +16,9 @@ class CommentsController < ApplicationController
     @comment = @model.comments.build(comments_params)
     if @comment.save
       render 'comments/show', layout: false
-      # redirect_to send(model_comments_path(@model), @model)
     else
       flash[:error] = "Comment was not created."
-      render `#{@model.class.name}/show`
-      # redirect_to send(model_comments_path(@model), @model)
+      render `#{@model.class.name.pluralize}/show`
     end
   end
 

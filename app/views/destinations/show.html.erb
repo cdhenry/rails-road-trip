@@ -20,9 +20,9 @@
       <% end %>
     </ul>
   </div>
-  <div class="card-body">
 
-  </div>
+  <%= render partial: 'comments/form', locals: { model: @destination } %>
+
   <div class="card-footer text-muted">
     Created At: <%= @destination.created_at %> |
     <% if current_user.admin || @destination.author_id == current_user.id %>

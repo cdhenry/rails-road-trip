@@ -4,7 +4,7 @@
     <%= f.hidden_field :author_id, value: current_user.id %>
     <%= f.submit %>
   <% end %>
-  <%= link_to "Load Comments", road_trip_comments_path(model), id: "load_comments" %> |
+  <%= link_to "Load Comments", send(model_comments_path(model), model), id: "load_comments" %> |
   <a href="#" class="card-link" id="hide_comments">Hide Comments</a><br>
   <div class="comments">
     <ul>
