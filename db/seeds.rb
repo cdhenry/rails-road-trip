@@ -35,6 +35,12 @@
     commentable_id: rand(1..10),
     commentable_type: RoadTrip
   )
+  Comment.create(
+    body: Faker::Hipster.sentence,
+    author_id: rand(1..10),
+    commentable_id: rand(1..10),
+    commentable_type: Destination
+  )
 end
 
 20.times do

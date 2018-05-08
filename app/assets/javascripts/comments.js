@@ -34,7 +34,7 @@ $(function(){
       let $ul = $("div.comments ul");
       $ul.html(" ");
       json.forEach(function(comment){
-        $ul.append("<li>" + comment.type_object.title + " (" + comment.commentable_type.split(/(?=[A-Z])/).join(" ") + ") : " + comment.body + "</li>")
+        $ul.append("<li>" + comment.type_object.name + " (" + comment.commentable_type.split(/(?=[A-Z])/).join(" ") + ") : " + comment.body + "</li>")
       });
     });
     e.preventDefault();
