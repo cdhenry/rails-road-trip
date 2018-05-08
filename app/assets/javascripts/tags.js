@@ -1,5 +1,5 @@
 $(function(){
-  $(".js-next-tag").on("click", function() {
+  $(".js-next-tag").on("click", function(e) {
     var nextId = parseInt($(".js-next-tag").attr("data-id")) + 1;
     $.get("/tags/" + nextId + ".json", function(data) {
       $(".tagName").text(data["name"]);
@@ -17,10 +17,11 @@ $(function(){
       // re-set the id to current on the link
       $(".js-next-tag").attr("data-id", data["id"]);
       $(".js-previous-tag").attr("data-id", data["id"]);
+      e.preventDefault();
     });
   });
   
-  $(".js-previous-tag").on("click", function() {
+  $(".js-previous-tag").on("click", function(e) {
     var previousId = parseInt($(".js-next-tag").attr("data-id")) - 1;
     $.get("/tags/" + previousId + ".json", function(data) {
       $(".tagName").text(data["name"]);
@@ -37,7 +38,8 @@ $(function(){
       })
       // re-set the id to current on the link
       $(".js-previous-tag").attr("data-id", data["id"]);
-      $(".js-next-tag").attr("data-id", data["id"])
+      $(".js-next-tag").attr("data-id", data["id"]);
+      e.preventDefault();
     });
   });
 });
