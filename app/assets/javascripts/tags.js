@@ -2,7 +2,6 @@ $(function(){
   $(".js-next-tag").on("click", function() {
     let nextId = parseInt($(".js-next-tag").attr("data-id")) + 1;
     $.get("/tags/" + nextId + ".json", function(data) {
-      debugger;
       $(".tagName").text(data["name"]);
       let $tbody = $("tbody.tags_destinations")
       $tbody.html(" ");
