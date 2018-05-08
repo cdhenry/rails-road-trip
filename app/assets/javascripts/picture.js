@@ -1,3 +1,10 @@
+function Picture(picture) {
+    this.id = picture.id;
+    this.url = picture.url;
+    this.imageable_id = picture.imageable_id;
+    this.imageable_type = picture.imageable_type;
+}
+
 $(function(){
   $(".js-next-pic").on("click", function(e) {
     $.get(this.href).success(function(data) {

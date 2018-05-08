@@ -1,3 +1,9 @@
+function Tag(tag) {
+    this.id = tag.id;
+    this.name = tag.name;
+    this.destinations = tag.destinations;
+}
+
 $(function(){
   $(".js-next-tag").on("click", function(e) {
     var nextId = parseInt($(".js-next-tag").attr("data-id")) + 1;

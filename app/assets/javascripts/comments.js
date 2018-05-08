@@ -1,3 +1,11 @@
+function Comment(comment) {
+    this.id = comment.id;
+    this.body = comment.body;
+    this.author = comment.author;
+    this.commentable_type = comment.commentable_type;
+    this.type_object = comment.type_object;
+}
+
 $(function(){
   $("#load_comments").on("click", function(e){
     $.get(this.href).success(function(json){
