@@ -6,24 +6,54 @@ function Comment(comment) {
     this.type_object = comment.type_object;
 }
 
-$(function(){
-  $("#load_comments").on("click", function(e){
-    $.get(this.href).success(function(json){
-      let $ul = $("div.comments ul");
-      $ul.html(" ");
-      json.forEach(function(comment){
-        $ul.append("<li>" + comment.author.name + " : " + comment.body + "</li>")
-      });
-    });
+Comment.prototype.showIndexComment = function() {
+  return `<li>${this.author.name} : ${this.body}</li>`
+}
+
+Comment.prototype.showCommentsMade = function () {
+  return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
+}
+
+Comment.done = function(response) {
+  let $ul = $("div.comments ul");
+  $ul.html(" ");
+  $.each(response, function(index, value){
+    let comment = new Comment(response[index]);
+    let indexComment;
+    if (this.id === "comments_made"){
+      indexComment = comment.showCommentsMade();
+    }else if (this.id === "comments_received"){
+      indexComment = comment.showCommentsReceived();
+    }else {
+      indexComment = comment.showIndexComment();
+    }
+    $ul.append(indexComment);
+  }.bind(this));
+}
+
+const loadCommentsMade = function () {
+  $("#comments_made").on("click", function(e){
+    $.get(this.href).done(Comment.done.bind(this))
     e.preventDefault();
   });
+}
 
+const loadComments = function() {
+  $("#load_comments").on("click", function(e){
+    e.preventDefault();
+    $.get(this.href).done(Comment.done.bind(this))
+  });  
+}
+
+const hideComments = function() {
   $("#hide_comments").on("click", function(e){
     let $ul = $("div.comments ul");
     $ul.html(" ")
     e.preventDefault();
   });
+}
 
+const newCommentForm = function() {
   $("#new_comment").on("submit", function(e){
     $.ajax({
       type: ($("input[name='_method']").val() || this.method),
@@ -36,17 +66,56 @@ $(function(){
       });
     e.preventDefault();
   });
+}
 
-  $("#comments_made").on("click", function(e){
-    $.get(this.href).success(function(json){
-      let $ul = $("div.comments ul");
-      $ul.html(" ");
-      json.forEach(function(comment){
-        $ul.append("<li>" + comment.type_object.name + " (" + comment.commentable_type.split(/(?=[A-Z])/).join(" ") + ") : " + comment.body + "</li>")
-      });
-    });
-    e.preventDefault();
-  });
+$(function(){
+  loadComments();
+  hideComments();
+  newCommentForm();
+  loadCommentsMade();
+})
+
+// $(function(){
+//   $("#load_comments").on("click", function(e){
+//     $.get(this.href).success(function(json){
+//       let $ul = $("div.comments ul");
+//       $ul.html(" ");
+//       json.forEach(function(comment){
+//         $ul.append("<li>" + comment.author.name + " : " + comment.body + "</li>")
+//       });
+//     });
+//     e.preventDefault();
+//   });
+  //
+  // $("#hide_comments").on("click", function(e){
+  //   let $ul = $("div.comments ul");
+  //   $ul.html(" ")
+  //   e.preventDefault();
+  // });
+  // 
+  // $("#new_comment").on("submit", function(e){
+  //   $.ajax({
+  //     type: ($("input[name='_method']").val() || this.method),
+  //     url: this.action,
+  //     data: $(this).serialize()
+  //   }).success(function(response){
+  //       $("#comment_body").val("");
+  //       let $ul = $("div.comments ul");
+  //       $ul.append(response);
+  //     });
+  //   e.preventDefault();
+  // });
+
+  // $("#comments_made").on("click", function(e){
+  //   $.get(this.href).success(function(json){
+  //     let $ul = $("div.comments ul");
+  //     $ul.html(" ");
+  //     json.forEach(function(comment){
+  //       $ul.append("<li>" + comment.type_object.name + " (" + comment.commentable_type.split(/(?=[A-Z])/).join(" ") + ") : " + comment.body + "</li>")
+  //     });
+  //   });
+  //   e.preventDefault();
+  // });
 
   // $("#comments_received").on("click", function(e){
   //   $.get(this.href).success(function(json){
@@ -58,4 +127,5 @@ $(function(){
   //   });
   //   e.preventDefault();
   // });
-});
+// });
+  
