@@ -27,11 +27,6 @@ class CommentsController < ApplicationController
   end
 
   private
-    def set_model
-      key = params.keys.last
-      model = key.tr('_', ' ').chomp(" id").split.map(&:capitalize).join('')
-      @model = eval model + ".find(params[:#{key}])"
-    end
 
     def comments_params
       params.require(:comment).permit(:body, :author_id)

@@ -1,24 +1,30 @@
 $(function(){
   $(".js-next-pic").on("click", function(e) {
-    var nextId = parseInt($(".js-next-pic").attr("data-id")) + 1;
-    $.get(this.href, function(data) {
-      debugger;
-      $(".image_url").src(data["url"]);
-      // re-set the id to current on the link
-      $(".js-next-pic").attr("data-id", data["id"]);
-      $(".js-previous-pic").attr("data-id", data["id"]);
+    $.get(this.href).success(function(data) {
+      var counter = parseInt($(".js-next-pic").attr("data-id")) + 1;
+      if (counter < data.length){
+        $(".image_url")[0].src = data[counter]["url"] + new Date().getTime();
+        // re-set the id to current on the link
+        $(".js-next-pic").attr("data-id", counter);
+        $(".js-previous-pic").attr("data-id", counter);
+      }else {
+        counter = parseInt($(".js-next-pic").attr("data-id")) - 1;
+      }
     });
     e.preventDefault();
   });
   
   $(".js-previous-pic").on("click", function(e) {
-    var previousId = parseInt($(".js-next-pic").attr("data-id")) - 1;
-    $.get("/pictures/" + previousId + ".json", function(data) {
-      $(".image_url").src(data["url"]);
-
-      // re-set the id to current on the link
-      $(".js-previous-pic").attr("data-id", data["id"]);
-      $(".js-next-pic").attr("data-id", data["id"])
+    $.get(this.href).success(function(data) {
+      var counter = parseInt($(".js-previous-pic").attr("data-id")) - 1;
+      if (counter > -1){
+        $(".image_url")[0].src = data[counter]["url"] + new Date().getTime();
+        // re-set the id to current on the link
+        $(".js-next-pic").attr("data-id", counter);
+        $(".js-previous-pic").attr("data-id", counter);
+      }else {
+        counter = parseInt($(".js-previous-pic").attr("data-id")) + 1;
+      }
     });
     e.preventDefault();
   });

@@ -23,4 +23,10 @@ class ApplicationController < ActionController::Base
   def has_no_values?(array)
     array.select{|v| v != "" && v != nil}.empty?
   end
+
+  def set_model
+    key = params.keys.last
+    model = key.tr('_', ' ').chomp(" id").split.map(&:capitalize).join('')
+    @model = eval model + ".find(params[:#{key}])"
+  end
 end
