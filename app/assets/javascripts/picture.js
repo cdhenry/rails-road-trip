@@ -13,7 +13,7 @@ $(function(){
     });
     e.preventDefault();
   });
-  
+
   $(".js-previous-pic").on("click", function(e) {
     $.get(this.href).success(function(data) {
       var counter = parseInt($(".js-previous-pic").attr("data-id")) - 1;

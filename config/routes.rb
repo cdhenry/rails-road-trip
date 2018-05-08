@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   resources :road_trips do
     resources :destinations, only: [:show, :index]
     resources :comments
+    resources :pictures
   end
   resources :destinations do
     resources :tags, only: [:show, :index]
     resources :comments
+    resources :pictures
   end
   resources :tags
   resources :user_road_trips, only: [:create]
