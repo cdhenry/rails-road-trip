@@ -42,17 +42,17 @@
     commentable_type: Destination
   )
   Picture.create(
-    url: Faker::LoremPixel.image,
+    url: "https://picsum.photos/400/200?random",
     imageable_id: rand(1..10),
     imageable_type: User
   )
   Picture.create(
-    url: Faker::LoremPixel.image,
+    url: "https://picsum.photos/400/200?random",
     imageable_id: rand(1..10),
     imageable_type: RoadTrip
   )
   Picture.create(
-    url: Faker::LoremPixel.image,
+    url: "https://picsum.photos/400/200?random",
     imageable_id: rand(1..10),
     imageable_type: Destination
   )

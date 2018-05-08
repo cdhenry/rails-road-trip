@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :road_trips, as: "created_trips"
     resources :destinations
     resources :comments
+    resources :pictures
   end
   resources :road_trips do
     resources :destinations, only: [:show, :index]
