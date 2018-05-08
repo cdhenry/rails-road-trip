@@ -43,18 +43,18 @@
   )
   Picture.create(
     url: Faker::LoremPixel.image,
-    pictureable_id: rand(1..10),
-    pictureable_type: User
+    imageable_id: rand(1..10),
+    imageable_type: User
   )
   Picture.create(
     url: Faker::LoremPixel.image,
-    pictureable_id: rand(1..10),
-    pictureable_type: RoadTrip
+    imageable_id: rand(1..10),
+    imageable_type: RoadTrip
   )
   Picture.create(
     url: Faker::LoremPixel.image,
-    pictureable_id: rand(1..10),
-    pictureable_type: Destination
+    imageable_id: rand(1..10),
+    imageable_type: Destination
   )
 end
 

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :user_road_trips, dependent: :delete_all
   has_many :road_trips, through: :user_road_trips
   has_many :pictures, as: :imageable
-  has_many :comments, as: :commentable
+  #has_many :comments, as: :commentable
 
   accepts_nested_attributes_for :user_road_trips
 
