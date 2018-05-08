@@ -10,8 +10,12 @@ Comment.prototype.showIndexComment = function() {
   return `<li>${this.author.name} : ${this.body}</li>`
 }
 
-Comment.prototype.showCommentsMade = function () {
+Comment.prototype.showCommentMade = function () {
   return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
+}
+
+Comment.prototype.showCommentReceived = function () {
+  //return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
 }
 
 Comment.done = function(response) {
@@ -21,9 +25,9 @@ Comment.done = function(response) {
     let comment = new Comment(response[index]);
     let indexComment;
     if (this.id === "comments_made"){
-      indexComment = comment.showCommentsMade();
+      indexComment = comment.showCommentMade();
     }else if (this.id === "comments_received"){
-      indexComment = comment.showCommentsReceived();
+      indexComment = comment.showCommentReceived();
     }else {
       indexComment = comment.showIndexComment();
     }
