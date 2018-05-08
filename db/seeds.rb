@@ -41,6 +41,21 @@
     commentable_id: rand(1..10),
     commentable_type: Destination
   )
+  Picture.create(
+    url: Faker::LoremPixel.image,
+    pictureable_id: rand(1..10),
+    pictureable_type: User
+  )
+  Picture.create(
+    url: Faker::LoremPixel.image,
+    pictureable_id: rand(1..10),
+    pictureable_type: RoadTrip
+  )
+  Picture.create(
+    url: Faker::LoremPixel.image,
+    pictureable_id: rand(1..10),
+    pictureable_type: Destination
+  )
 end
 
 20.times do
