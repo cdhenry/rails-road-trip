@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :pictures
   end
   resources :destinations do
-    resources :tags, only: [:show, :index]
+    resources :tags, only: [:show, :index, :create]
     resources :comments
     resources :pictures
   end

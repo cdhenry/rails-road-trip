@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
       render 'comments/show', layout: false
     else
       flash[:error] = "Comment was not created."
-      render `#{@model.class.name.pluralize}/show`
+      render `#{@model.class.name.pluralize}/#{@model.id}`
     end
   end
 

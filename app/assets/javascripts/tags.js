@@ -20,7 +20,7 @@ $(function(){
       e.preventDefault();
     });
   });
-  
+
   $(".js-previous-tag").on("click", function(e) {
     var previousId = parseInt($(".js-next-tag").attr("data-id")) - 1;
     $.get("/tags/" + previousId + ".json", function(data) {
@@ -42,4 +42,19 @@ $(function(){
       e.preventDefault();
     });
   });
+
+  // $("#new_tag").on("submit", function(e){
+  //   $.ajax({
+  //     type: ($("input[name='_method']").val() || this.method),
+  //     url: this.action,
+  //     data: $(this).serialize()
+  //   }).success(function(response){
+  //       $("#tag_name").val("");
+  //       let $ul = $("ul.tags-list");
+  //       $ul.append(
+  //         `<li class='list-group-item'>${response.name}</li>`
+  //       );
+  //     });
+  //   e.preventDefault();
+  // });
 });

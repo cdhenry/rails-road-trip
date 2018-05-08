@@ -6,7 +6,10 @@
   </div>
   <div class="container" role="main">
     <% if !@destination.pictures.empty? %>
-      <center><img style="height: 200px; width: 400px; display: block;" src="<%=@destination.pictures[0].url%>" alt="Card image"></center>
+      <center>
+        <span><img style="height: 200px; width: 400px; display: block;" src="<%=@destination.pictures[0].url%>" alt="Card image" class="image_url"></span>
+        <span><a href="<%=@destination.id%>/pictures" class="js-next-pic" data-id="0">next</a> / <a href="<%=@destination.id%>/pictures" class="js-previous-pic" data-id="0">previous</a></span>
+      </center>
     <% else %>
       <center><a href="#" class="add_picture"><img style="height: 200px; width: 400px; display: block;" src="http://placeholder.pics/svg/400x200/8B8B8B/FFFFFF/Add%20a%20Picture"></a></center>
     <% end %>
@@ -14,7 +17,7 @@
       <p class="card-text"><%= @destination.description %></p>
     </div>
     <p>Tags:</p>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush tags-list">
       <% if @destination.tags.empty? %>
         <li class="list-group-item"><center>None</center></li>
       <% else %>
@@ -24,6 +27,7 @@
       <% end %>
     </ul>
   </div>
+  <%#= render partial: 'tag_form', locals: { destination: @destination } %>
 
   <%= render partial: 'comments/form', locals: { model: @destination } %>
 

@@ -25,11 +25,21 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(tag_params)
-    if @tag.save
-      redirect_to @tag
+    if params[:destination_id]
+      @tag = Destination.find(params[:destination_id]).tags.build(tag_params)
+      if @tag.save
+        render json: @tag
+      else
+        flash[:error] = "Tag was not created."
+        render `destinations/#{params[:destination_id]}`
+      end
     else
-      render :new
+      @tag = Tag.new(tag_params)
+      if @tag.save
+        redirect_to @tag
+      else
+        render :new
+      end
     end
   end
 
