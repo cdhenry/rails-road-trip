@@ -29,6 +29,23 @@
     password: "password",
     miles_driven: rand(100..200000)
   )
+end
+
+20.times do
+  UserRoadTrip.create(
+    user_id: rand(1..10),
+    road_trip_id: rand(1..10),
+    status: ["In Process", "Completed"].sample
+  )
+  DestinationTag.create(
+    destination_id: rand(1..10),
+    tag_id: rand(1..10)
+  )
+  RoadTripDestination.create(
+    destination_id: rand(1..10),
+    road_trip_id: rand(1..10),
+    destination_order: rand(1..10)
+  )
   Comment.create(
     body: Faker::Hipster.sentence,
     author_id: rand(1..10),
@@ -55,23 +72,6 @@
     url: "https://picsum.photos/400/200?random",
     imageable_id: rand(1..10),
     imageable_type: Destination
-  )
-end
-
-20.times do
-  UserRoadTrip.create(
-    user_id: rand(1..10),
-    road_trip_id: rand(1..10),
-    status: ["In Process", "Completed"].sample
-  )
-  DestinationTag.create(
-    destination_id: rand(1..10),
-    tag_id: rand(1..10)
-  )
-  RoadTripDestination.create(
-    destination_id: rand(1..10),
-    road_trip_id: rand(1..10),
-    destination_order: rand(1..10)
   )
 end
 
