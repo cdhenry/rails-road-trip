@@ -8,7 +8,8 @@
     <% if !@user.pictures.empty? %>
       <center>
         <span><img style="height: 200px; width: 400px; display: block;" src="<%=@user.pictures[0].url%>" alt="Card image" class="image_url"></span>
-        <span><a href="<%=@user.id%>/pictures" class="js-next-pic" data-id="0" data-total"<%=@user.pictures.length%>">next</a> / <a href="<%=@user.id%>/pictures" class="js-previous-pic" data-id="0">previous</a></span>
+        <span><a href="<%=@user.id%>/pictures" class="js-next-pic" data-id="0">next</a> / <a href="<%=@user.id%>/pictures" class="js-previous-pic" data-id="0">previous</a> / </span>
+        <span class="js-page-count">(1)<span>
       </center>
     <% else %>
       <center><a href="#" class="add_picture"><img style="height: 200px; width: 400px; display: block;" src="http://placeholder.pics/svg/400x200/8B8B8B/FFFFFF/Add%20a%20Picture"></a></center>

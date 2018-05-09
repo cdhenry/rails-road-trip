@@ -9,21 +9,23 @@
     <h6 class="card-subtitle text-muted">Created At: <%= @road_trip.created_at %> </h6>
   </div>
 
-  <div class="card-body"><div class="container" role="main">
-    <% if !@road_trip.pictures.empty? %>
-      <a href="<%=@road_trip.id%>/pictures" class="js-next-pic" data-id="0" data-total"<%=@road_trip.pictures.length%>">next</a> / <a href="<%=@road_trip.id%>/pictures" class="js-previous-pic" data-id="0">previous</a><br>
-      <img style="height: 200px; width: 400px; display: block; float:left;" src="<%=@road_trip.pictures[0].url%>" alt="Card image" class="image_url">
-    <% else %>
-      <center><a href="#" class="add_picture"><img style="height: 200px; width: 400px; display: block; float:left;" src="http://placeholder.pics/svg/400x200/8B8B8B/FFFFFF/Add%20a%20Picture"></a></center>
-    <% end %>
+  <div class="card-body">
+    <div class="form-group" style="float:left;">
+      <% if !@road_trip.pictures.empty? %>
+        <img style="height: 200px; width: 400px; display: block; float:left;" src="<%=@road_trip.pictures[0].url%>" alt="Card image" class="image_url">
+        <a href="<%=@road_trip.id%>/pictures" class="js-next-pic" data-id="0">next</a> / <a href="<%=@road_trip.id%>/pictures" class="js-previous-pic" data-id="0">previous</a>
+        <span class="js-page-count">(1)<span>
+      <% else %>
+        <center><a href="#" class="add_picture"><img style="height: 200px; width: 400px; display: block; float:left;" src="http://placeholder.pics/svg/400x200/8B8B8B/FFFFFF/Add%20a%20Picture"></a></center>
+      <% end %>
+    </div>
     <div class="form-group" style="float:right;">
       <%= render partial: "users/badges", locals: {road_trip: @road_trip} %>
       <br>
       <%= render partial: "user_road_trips/buttons", locals: {road_trip: @road_trip} %>
       <br>
     </div>
-
-  </div></div>
+  </div>
 
   <div class="container" role="main">
 
