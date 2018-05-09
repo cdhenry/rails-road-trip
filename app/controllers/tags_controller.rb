@@ -11,6 +11,7 @@ class TagsController < ApplicationController
   end
 
   def show
+    @length = Tag.all.length
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @tag }

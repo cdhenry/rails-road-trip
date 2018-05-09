@@ -1,7 +1,7 @@
 <div class="card mb-3">
   <h3 class="card-header">
     <span class="tagName"><%= @tag.name %></span>
-    <span style="float:right"><a href="#" class="js-next-tag" data-id="<%=@tag.id%>">next tag</a> / <a href="#" class="js-previous-tag" data-id="<%=@tag.id%>">previous tag</a></span>
+    <span style="float:right"><a href="#" class="js-next-tag" data-id="<%=@tag.id%>" data-total="<%=@length%>">next tag</a> / <a href="#" class="js-previous-tag" data-id="<%=@tag.id%>">previous tag</a></span>
   </h3>
   <div class="card-body">
     <h5 class="card-title">Destinations that have this tag:</h5>
