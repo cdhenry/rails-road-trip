@@ -1,18 +1,20 @@
-function Tag(tag) {
+class Tag {
+  constructor(tag){
     this.id = tag.id;
     this.name = tag.name;
     this.destinations = tag.destinations;
-}
+  }
 
-Tag.prototype.showDestinations = function (wrapper) {
-  this.destinations.forEach(function(destination){
-    wrapper.append(
-      `<tr class="table-active">
-        <td>${destination.name}</td>
-        <td>${destination.city}, ${destination.state}</td>
-        <td>${destination.street_address}</td>
-      </tr>`)
-  })
+  showDestinations(wrapper) {
+    this.destinations.forEach(function(destination){
+      wrapper.append(
+        `<tr class="table-active">
+          <td>${destination.name}</td>
+          <td>${destination.city}, ${destination.state}</td>
+          <td>${destination.street_address}</td>
+        </tr>`)
+    })
+  }
 }
 
 Tag.done = function(response) {
