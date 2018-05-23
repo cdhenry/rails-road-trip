@@ -1,21 +1,23 @@
-function Comment(comment) {
+class Comment {
+  constructor(comment) {
     this.id = comment.id;
     this.body = comment.body;
     this.author = comment.author;
     this.commentable_type = comment.commentable_type;
     this.type_object = comment.type_object;
-}
+  }
 
-Comment.prototype.showIndexComment = function() {
-  return `<li>${this.author.name} : ${this.body}</li>`
-}
+  showIndexComment() {
+    return `<li>${this.author.name} : ${this.body}</li>`
+  }
 
-Comment.prototype.showCommentMade = function () {
-  return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
-}
+  showCommentMade() {
+    return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
+  }
 
-Comment.prototype.showCommentReceived = function () {
-  //return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
+  showCommentReceived() {
+    //return `<li>${this.type_object.name} (${this.commentable_type.split(/(?=[A-Z])/).join(" ")}) : ${this.body}</li>`
+  }
 }
 
 Comment.done = function(response) {
@@ -89,4 +91,3 @@ $(function(){
   //   });
   //   e.preventDefault();
   // });
-  
